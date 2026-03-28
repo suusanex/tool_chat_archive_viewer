@@ -1,0 +1,116 @@
+[
+    {
+        "user": "U01CSY003",
+        "type": "message",
+        "ts": "1731978000.100000",
+        "client_msg_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "text": "デモアプリ向けの架空案件 Orbit を開始します。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "b5890003",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01csy003_72.png",
+            "first_name": "Casey",
+            "real_name": "Casey Planner",
+            "display_name": "casey",
+            "team": "T0SAMPLE1",
+            "name": "casey-pm",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "prjA1",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "デモアプリ向けの架空案件 Orbit を開始します。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01DRW004",
+        "type": "message",
+        "ts": "1731978120.200000",
+        "client_msg_id": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "text": "チャンネル構成は general、project-orbit、support-desk、random-lounge の4つで進めます。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "6c71c404",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01drw004_72.png",
+            "first_name": "Drew",
+            "real_name": "Drew Builder",
+            "display_name": "drew",
+            "team": "T0SAMPLE1",
+            "name": "drew-dev",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "prjA2",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "チャンネル構成は general、project-orbit、support-desk、random-lounge の4つで進めます。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01BLK002",
+        "type": "message",
+        "ts": "1731978240.300000",
+        "client_msg_id": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+        "text": "日別 JSON が複数年にまたがるよう、2024年開始にしておきます。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "2aa19802",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01blk002_72.png",
+            "first_name": "Blake",
+            "real_name": "Blake Ops",
+            "display_name": "",
+            "team": "T0SAMPLE1",
+            "name": "blake-ops",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "prjA3",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "日別 JSON が複数年にまたがるよう、2024年開始にしておきます。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

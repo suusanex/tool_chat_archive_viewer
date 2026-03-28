@@ -1,0 +1,78 @@
+[
+    {
+        "user": "U01EMI005",
+        "type": "message",
+        "ts": "1770082200.100000",
+        "client_msg_id": "16161616-1616-4616-8616-161616161616",
+        "text": "最終確認です。日別ファイルの欠番があっても読み込みに問題はありませんでした。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "dc322f05",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01emi005_72.png",
+            "first_name": "Emi",
+            "real_name": "Emi QA",
+            "display_name": "emi",
+            "team": "T0SAMPLE1",
+            "name": "emi-qa",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "supB1",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "最終確認です。日別ファイルの欠番があっても読み込みに問題はありませんでした。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01CSY003",
+        "type": "message",
+        "ts": "1770082320.200000",
+        "client_msg_id": "17171717-1717-4717-8717-171717171717",
+        "text": "助かります。実データに似た構造のまま、件数だけ控えめにできています。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "b5890003",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01csy003_72.png",
+            "first_name": "Casey",
+            "real_name": "Casey Planner",
+            "display_name": "casey",
+            "team": "T0SAMPLE1",
+            "name": "casey-pm",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "supB2",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "助かります。実データに似た構造のまま、件数だけ控えめにできています。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

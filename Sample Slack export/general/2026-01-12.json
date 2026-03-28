@@ -1,0 +1,116 @@
+[
+    {
+        "user": "U01CSY003",
+        "type": "message",
+        "ts": "1768176900.100000",
+        "client_msg_id": "88888888-8888-4888-8888-888888888888",
+        "text": "2026年デモ版の説明順を更新しました。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "b5890003",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01csy003_72.png",
+            "first_name": "Casey",
+            "real_name": "Casey Planner",
+            "display_name": "casey",
+            "team": "T0SAMPLE1",
+            "name": "casey-pm",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genC1",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "2026年デモ版の説明順を更新しました。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01AKR001",
+        "type": "message",
+        "ts": "1768177020.200000",
+        "client_msg_id": "99999999-9999-4999-8999-999999999999",
+        "text": "最初に general、次に project-orbit、最後に support-desk を見せます。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "1f75cb01",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01akr001_72.png",
+            "first_name": "Akira",
+            "real_name": "Akira Demo",
+            "display_name": "akira",
+            "team": "T0SAMPLE1",
+            "name": "akira-demo",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genC2",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "最初に general、次に project-orbit、最後に support-desk を見せます。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01DRW004",
+        "type": "message",
+        "ts": "1768177140.300000",
+        "client_msg_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "text": "了解です。匿名ユーザー名でも一覧表示は十分わかりやすいです。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "6c71c404",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01drw004_72.png",
+            "first_name": "Drew",
+            "real_name": "Drew Builder",
+            "display_name": "drew",
+            "team": "T0SAMPLE1",
+            "name": "drew-dev",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genC3",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "了解です。匿名ユーザー名でも一覧表示は十分わかりやすいです。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

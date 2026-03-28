@@ -1,0 +1,30 @@
+[
+    {
+        "user_id": "U01CSY003",
+        "user_name": "casey-pm",
+        "date": 1731981600,
+        "change_type": "added",
+        "app_type": "Planning Helper",
+        "app_id": "A01PLAN01",
+        "scope": "channels:history,chat:write,users:read"
+    },
+    {
+        "user_id": "U01EMI005",
+        "user_name": "emi-qa",
+        "date": 1749003600,
+        "change_type": "added",
+        "service_id": 44001234,
+        "service_type": "Incoming WebHooks",
+        "scope": "incoming-webhook",
+        "channel": "private"
+    },
+    {
+        "user_id": "U01CSY003",
+        "user_name": "casey-pm",
+        "date": 1768179000,
+        "change_type": "removed",
+        "reason": "user_uninstalled_app",
+        "app_type": "Planning Helper",
+        "app_id": "A01PLAN01"
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "id": "F01CAN001",
+        "created": 1731982200,
+        "name": "demo_launch_plan",
+        "title": "Demo Launch Plan",
+        "mimetype": "application/vnd.slack-docs",
+        "filetype": "quip",
+        "pretty_type": "Canvas",
+        "user": "U01CSY003",
+        "editable": true,
+        "size": 128,
+        "mode": "quip",
+        "is_public": true,
+        "is_tombstoned": false,
+        "public_url_shared": false,
+        "date_delete": 0,
+        "url_private_download": "https://files.slack.com/files-pri/T0SAMPLE1-F01CAN001/download/canvas?token=sample-token",
+        "shares": [
+            {
+                "team": "T0SAMPLE1",
+                "channel": "C01GEN001"
+            },
+            {
+                "team": "T0SAMPLE1",
+                "channel": "C01PRJ002"
+            }
+        ],
+        "permalink": "https://sample-workspace.slack.com/docs/T0SAMPLE1/F01CAN001",
+        "export_timestamp": 1768179000
+    }
+]

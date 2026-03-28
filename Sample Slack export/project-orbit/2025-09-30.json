@@ -1,0 +1,116 @@
+[
+    {
+        "user": "U01AKR001",
+        "type": "message",
+        "ts": "1759208400.100000",
+        "client_msg_id": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+        "text": "リハーサルでは project-orbit の履歴からスレッド表示を説明します。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "1f75cb01",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01akr001_72.png",
+            "first_name": "Akira",
+            "real_name": "Akira Demo",
+            "display_name": "akira",
+            "team": "T0SAMPLE1",
+            "name": "akira-demo",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "prjB1",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "リハーサルでは project-orbit の履歴からスレッド表示を説明します。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01CSY003",
+        "type": "message",
+        "ts": "1759208520.200000",
+        "client_msg_id": "ffffffff-ffff-4fff-8fff-ffffffffffff",
+        "text": "その後 support-desk に切り替えて、複数チャンネル対応を見せます。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "b5890003",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01csy003_72.png",
+            "first_name": "Casey",
+            "real_name": "Casey Planner",
+            "display_name": "casey",
+            "team": "T0SAMPLE1",
+            "name": "casey-pm",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "prjB2",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "その後 support-desk に切り替えて、複数チャンネル対応を見せます。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01DRW004",
+        "type": "message",
+        "ts": "1759208640.300000",
+        "client_msg_id": "12121212-1212-4212-8212-121212121212",
+        "text": "年跨ぎは general の 2024-11-18 と 2026-01-12 を使えば十分です。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "6c71c404",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01drw004_72.png",
+            "first_name": "Drew",
+            "real_name": "Drew Builder",
+            "display_name": "drew",
+            "team": "T0SAMPLE1",
+            "name": "drew-dev",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "prjB3",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "年跨ぎは general の 2024-11-18 と 2026-01-12 を使えば十分です。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
