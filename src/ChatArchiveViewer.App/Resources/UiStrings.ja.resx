@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Nav.Browse" xml:space="preserve"><value>閲覧</value></data>
+  <data name="Nav.Search" xml:space="preserve"><value>検索</value></data>
+  <data name="Nav.Settings" xml:space="preserve"><value>設定</value></data>
+  <data name="Nav.About" xml:space="preserve"><value>このアプリについて</value></data>
+  <data name="Browse.OpenFolder" xml:space="preserve"><value>フォルダーを開く</value></data>
+  <data name="Browse.OpenZip" xml:space="preserve"><value>ZIP を開く</value></data>
+  <data name="Browse.Channels" xml:space="preserve"><value>チャンネル</value></data>
+  <data name="Browse.Dates" xml:space="preserve"><value>日付</value></data>
+  <data name="Browse.Messages" xml:space="preserve"><value>メッセージ</value></data>
+  <data name="Browse.Back" xml:space="preserve"><value>戻る</value></data>
+  <data name="Browse.NarrowStep.Channels" xml:space="preserve"><value>チャンネル</value></data>
+  <data name="Browse.NarrowStep.Dates" xml:space="preserve"><value>日付</value></data>
+  <data name="Browse.NarrowStep.Messages" xml:space="preserve"><value>メッセージ</value></data>
+  <data name="Browse.Day.UnknownParticipant" xml:space="preserve"><value>不明な参加者</value></data>
+  <data name="Browse.Breadcrumb.Root" xml:space="preserve"><value>アーカイブ</value></data>
+  <data name="Browse.Context.NoArchive" xml:space="preserve"><value>アーカイブが読み込まれていません</value></data>
+  <data name="Browse.Context.NoChannel" xml:space="preserve"><value>チャンネルが見つかりません</value></data>
+  <data name="Browse.Context.SelectChannel" xml:space="preserve"><value>チャンネルを選択してください</value></data>
+  <data name="Browse.Context.NoDate" xml:space="preserve"><value>{0} / 日付なし</value></data>
+  <data name="Browse.Context.SelectDate" xml:space="preserve"><value>{0} / 日付を選択してください</value></data>
+  <data name="Browse.Context.SelectedDate" xml:space="preserve"><value>{0} / {1:yyyy-MM-dd}</value></data>
+  <data name="Search.Placeholder" xml:space="preserve"><value>キーワードを入力</value></data>
+  <data name="Search.Button" xml:space="preserve"><value>検索</value></data>
+  <data name="SettingsThemeLabel" xml:space="preserve"><value>テーマ</value></data>
+  <data name="SettingsThemeSystem" xml:space="preserve"><value>システム</value></data>
+  <data name="SettingsThemeLight" xml:space="preserve"><value>ライト</value></data>
+  <data name="SettingsThemeDark" xml:space="preserve"><value>ダーク</value></data>
+  <data name="Settings.Save" xml:space="preserve"><value>設定を保存</value></data>
+  <data name="About.VersionPrefix" xml:space="preserve"><value>バージョン: </value></data>
+  <data name="About.OpenPrivacyPolicy" xml:space="preserve"><value>プライバシーポリシーを開く</value></data>
+  <data name="About.LicensePlaceholder" xml:space="preserve"><value>利用ライブラリとライセンス一覧は今後の更新で追加できます。</value></data>
+  <data name="About.AppName" xml:space="preserve"><value>Chat Archive Viewer</value></data>
+  <data name="About.Disclaimer" xml:space="preserve"><value>このアプリは非公式のローカルアーカイブビューアです。Slack とは提携していません。</value></data>
+  <data name="About.PrivacySummary" xml:space="preserve"><value>このアプリはユーザーが選択したローカルファイルのみを処理し、データを外部送信しません。</value></data>
+  <data name="About.SupportedFormats" xml:space="preserve"><value>対応形式（v1）: Slack JSON エクスポート</value></data>
+  <data name="Overview.NoArchive" xml:space="preserve"><value>アーカイブ未読み込み</value></data>
+  <data name="Overview.DefaultFormat" xml:space="preserve"><value>-</value></data>
+  <data name="Overview.DefaultSummary" xml:space="preserve"><value>ローカルのアーカイブフォルダーまたは zip ファイルを開いて開始してください。</value></data>
+  <data name="Overview.DefaultArchiveName" xml:space="preserve"><value>アーカイブ</value></data>
+  <data name="Overview.SummaryFormat" xml:space="preserve"><value>会話: {0}、参加者: {1}、メッセージ: {2}</value></data>
+  <data name="Dialog.Error.Title" xml:space="preserve"><value>エラー</value></data>
+  <data name="Dialog.Close" xml:space="preserve"><value>閉じる</value></data>
+  <data name="Error.OpenArchive.NoSupportedFormat" xml:space="preserve"><value>対応しているアーカイブ形式が検出されませんでした。</value></data>
+  <data name="Error.OpenArchive.Failed" xml:space="preserve"><value>アーカイブを開けませんでした。</value></data>
+  <data name="Error.Search.Failed" xml:space="preserve"><value>検索に失敗しました。</value></data>
+  <data name="Error.PrivacyPolicy.OpenFailed" xml:space="preserve"><value>プライバシーポリシーを開けませんでした。</value></data>
+  <data name="Error.Browse.CountsFailed" xml:space="preserve"><value>選択した月のメッセージ件数を読み込めませんでした。</value></data>
+</root>
