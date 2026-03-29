@@ -1,91 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
-        <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
-        <OutputType>WinExe</OutputType>
+	<PropertyGroup>
+		<TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+		<TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+		<OutputType>WinExe</OutputType>
 
-        <!-- WinUI 3 -->
-        <UseWinUI>true</UseWinUI>
-        <EnableMsixTooling>true</EnableMsixTooling>
-        <WindowsPackageType Condition="'$(GenerateAppxPackageOnBuild)' != 'true' and '$(AppxPackage)' != 'true'">None</WindowsPackageType>
+		<!-- WinUI 3 -->
+		<UseWinUI>true</UseWinUI>
+		<EnableMsixTooling>true</EnableMsixTooling>
+      <Packaged Condition="'$(Packaged)' == '' and '$(BuildingInsideVisualStudio)' == 'true'">true</Packaged>
+		<WindowsPackageType Condition="'$(Packaged)' != 'true' and '$(GenerateAppxPackageOnBuild)' != 'true' and '$(AppxPackage)' != 'true'">None</WindowsPackageType>
 
-        <!-- Project Options -->
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>ChatArchiveViewer.App</RootNamespace>
-        <AssemblyName>LocalChatArchiveViewer.App</AssemblyName>
-        <AssemblyTitle>Local Chat Archive Viewer</AssemblyTitle>
-        <Product>Local Chat Archive Viewer</Product>
-        <Description>Local-only chat archive viewer</Description>
-        <AssemblyVersion>1.0.0.0</AssemblyVersion>
-        <FileVersion>1.0.0.0</FileVersion>
-        <InformationalVersion>1.0.0</InformationalVersion>
+		<!-- Project Options -->
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>ChatArchiveViewer.App</RootNamespace>
+		<AssemblyName>LocalChatArchiveViewer.App</AssemblyName>
+		<AssemblyTitle>Local Chat Archive Viewer</AssemblyTitle>
+		<Product>Local Chat Archive Viewer</Product>
+		<Description>Local-only chat archive viewer</Description>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<InformationalVersion>1.0.0</InformationalVersion>
 
-        <!-- App Options -->
-        <UseRidGraph>true</UseRidGraph>
-        <Platforms>x86;x64;ARM64</Platforms>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
-        <PublishProfile>win-$(Platform).pubxml</PublishProfile>
-        <RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &gt;= 8">win-x86;win-x64;win-arm64</RuntimeIdentifiers>
-        <RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &lt; 8">win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
-    </PropertyGroup>
+		<!-- App Options -->
+		<UseRidGraph>true</UseRidGraph>
+		<Platforms>x86;x64;ARM64</Platforms>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &gt;= 8">win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &lt; 8">win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+	</PropertyGroup>
 
-    <ItemGroup>
-        <Content Include="Assets\SplashScreen.scale-200.png" />
-        <Content Include="Assets\LockScreenLogo.scale-200.png" />
-        <Content Include="Assets\Square150x150Logo.scale-200.png" />
-        <Content Include="Assets\Square44x44Logo.scale-200.png" />
-        <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-        <Content Include="Assets\StoreLogo.png" />
-        <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-        <Content Include="..\..\Sample Slack export.zip"
-                 Link="Samples\Sample Slack export.zip"
-                 CopyToOutputDirectory="PreserveNewest"
-                 CopyToPublishDirectory="PreserveNewest" />
-        <Content Include="..\..\Sample Slack export\**\*"
-                 Link="Samples\Sample Slack export\%(RecursiveDir)%(Filename)%(Extension)"
-                 CopyToOutputDirectory="PreserveNewest"
-                 CopyToPublishDirectory="PreserveNewest" />
-    </ItemGroup>
+	<ItemGroup>
+		<Content Include="Assets\SplashScreen.scale-200.png" />
+		<Content Include="Assets\LockScreenLogo.scale-200.png" />
+		<Content Include="Assets\Square150x150Logo.scale-200.png" />
+		<Content Include="Assets\Square44x44Logo.scale-200.png" />
+		<Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+		<Content Include="Assets\StoreLogo.png" />
+		<Content Include="Assets\Wide310x150Logo.scale-200.png" />
+		<Content Include="..\..\Sample Slack export.zip" Link="Samples\Sample Slack export.zip" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+		<Content Include="..\..\Sample Slack export\**\*" Link="Samples\Sample Slack export\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+	</ItemGroup>
 
-    <ItemGroup>
-        <None Remove="ChatArchiveViewer.App.slnx" />
-    </ItemGroup>
+	<ItemGroup>
+		<None Remove="ChatArchiveViewer.App.slnx" />
+	</ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
-        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.*" />
-        <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.*" />
-        <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
-        <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.*" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.*" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
+		<PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
 
-        <Manifest Include="$(ApplicationManifest)" />
-    </ItemGroup>
+		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
 
-    <!-- 
+	<!-- 
         Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
         Tools extension to be activated for this project even if the Windows App SDK Nuget
         package has not yet been restored.
     -->
-    <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
-        <ProjectCapability Include="Msix" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\ChatArchiveViewer.Core\ChatArchiveViewer.Core.csproj" />
-      <ProjectReference Include="..\ChatArchiveViewer.Formats.Slack\ChatArchiveViewer.Formats.Slack.csproj" />
-    </ItemGroup>
+	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ChatArchiveViewer.Core\ChatArchiveViewer.Core.csproj" />
+		<ProjectReference Include="..\ChatArchiveViewer.Formats.Slack\ChatArchiveViewer.Formats.Slack.csproj" />
+	</ItemGroup>
 
-    <!-- 
+	<!-- 
         Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
         Explorer "Package and Publish" context menu entry to be enabled for this project even if 
         the Windows App SDK Nuget package has not yet been restored.
     -->
-    <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
-        <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
-    </PropertyGroup>
+	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+	</PropertyGroup>
 </Project>
