@@ -142,8 +142,10 @@ public sealed class FolderArchiveSourceTests
 
         using var cleanup = new TemporaryDirectoryCleanup(siblingRoot);
         using var source = new FolderArchiveSource(tempRoot);
+        var escapePath = Path.Combine("..", Path.GetFileName(siblingRoot), "secret.json")
+            .Replace(Path.DirectorySeparatorChar, '/');
 
-        var action = async () => await source.FileExistsAsync($"../{Path.GetFileName(siblingRoot)}/secret.json", CancellationToken.None);
+        var action = async () => await source.FileExistsAsync(escapePath, CancellationToken.None);
 
         Assert.That(action, Throws.TypeOf<InvalidOperationException>());
     }
