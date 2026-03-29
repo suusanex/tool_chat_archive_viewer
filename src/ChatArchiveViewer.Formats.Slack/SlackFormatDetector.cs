@@ -1,3 +1,4 @@
+using System.Globalization;
 using ChatArchiveViewer.Core.Abstractions;
 using ChatArchiveViewer.Core.Models;
 using Microsoft.Extensions.Logging;
@@ -70,8 +71,10 @@ public sealed class SlackFormatDetector : IArchiveFormatDetector
         }
 
         return DateOnly.TryParseExact(
-            fileName.Replace(".json", string.Empty, StringComparison.OrdinalIgnoreCase),
+            Path.GetFileNameWithoutExtension(fileName),
             "yyyy-MM-dd",
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.None,
             out _);
     }
 }

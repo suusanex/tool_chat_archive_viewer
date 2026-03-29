@@ -6,7 +6,7 @@ public sealed class ConversationDateCountService : IConversationDateCountService
 {
     private readonly IConversationDayMessageCountSource countSource;
     private readonly object gate = new();
-    private readonly Dictionary<string, Dictionary<DateOnly, int>> cache = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, Dictionary<DateOnly, int>> cache = new(StringComparer.OrdinalIgnoreCase);
     private int cacheGeneration;
 
     public ConversationDateCountService(IConversationDayMessageCountSource countSource)

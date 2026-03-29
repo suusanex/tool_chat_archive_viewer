@@ -112,7 +112,10 @@ public sealed class FolderArchiveSource : IArchiveSource
 
     private string EnsureUnderRoot(string fullPath)
     {
-        if (!fullPath.StartsWith(rootPath, StringComparison.OrdinalIgnoreCase))
+        var relativePath = Path.GetRelativePath(rootPath, fullPath);
+        if (relativePath.Equals("..", StringComparison.Ordinal) ||
+            relativePath.StartsWith($"..{Path.DirectorySeparatorChar}", StringComparison.Ordinal) ||
+            Path.IsPathRooted(relativePath))
         {
             throw new InvalidOperationException("Path escape is not allowed.");
         }

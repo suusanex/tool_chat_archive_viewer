@@ -18,8 +18,13 @@ internal static class SlackMappingHelpers
             throw new FormatException($"Invalid Slack timestamp format: {ts}");
         }
 
-        var unixSeconds = (double)raw;
-        return DateTimeOffset.FromUnixTimeMilliseconds((long)Math.Round(unixSeconds * 1000d));
+        var unixMilliseconds = decimal.Truncate(raw * 1000m);
+        if (unixMilliseconds < long.MinValue || unixMilliseconds > long.MaxValue)
+        {
+            throw new FormatException($"Slack timestamp is out of range: {ts}");
+        }
+
+        return DateTimeOffset.FromUnixTimeMilliseconds((long)unixMilliseconds);
     }
 
     public static ConversationType ToConversationType(SlackChannel channel)

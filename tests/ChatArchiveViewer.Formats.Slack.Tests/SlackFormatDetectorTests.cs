@@ -212,6 +212,32 @@ public sealed class SlackFormatDetectorTests
         Assert.That(result!.IsDetected, Is.False);
     }
 
+    // TP-010h: 非グレゴリオ暦カルチャでも日付ファイル名を安定して検出できる
+    [Test]
+    public async Task UT_IT_010h__DetectAsync_WithNonGregorianCulture_ReturnsDetected()
+    {
+        var root = CreateSlackLikeFolder();
+        await using var source = new FolderArchiveSource(root);
+        var detector = new SlackFormatDetector(NullLogger<SlackFormatDetector>.Instance);
+        var previousCulture = CultureInfo.CurrentCulture;
+        var previousUiCulture = CultureInfo.CurrentUICulture;
+
+        try
+        {
+            CultureInfo.CurrentCulture = new CultureInfo("ar-SA");
+            CultureInfo.CurrentUICulture = new CultureInfo("ar-SA");
+
+            var result = await detector.DetectAsync(source, CancellationToken.None);
+
+            Assert.That(result.IsDetected, Is.True);
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = previousCulture;
+            CultureInfo.CurrentUICulture = previousUiCulture;
+        }
+    }
+
     private string CreateSlackLikeFolder()
     {
         var root = TrackTempDirectory(Path.Combine(Path.GetTempPath(), $"slack-detector-{Guid.NewGuid():N}"));

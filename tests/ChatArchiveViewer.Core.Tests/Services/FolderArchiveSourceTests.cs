@@ -131,4 +131,31 @@ public sealed class FolderArchiveSourceTests
         Assert.That(txtFiles.All(f => f.EndsWith(".txt", StringComparison.OrdinalIgnoreCase)), Is.True);
         Assert.That(txtFiles, Has.Count.EqualTo(1));
     }
+
+    // TP-060i: ルート接頭辞が一致する兄弟フォルダへのパスエスケープは拒否する
+    [Test]
+    public void UT_IT_060i__FileExistsAsync_PathEscapesToSiblingWithSharedPrefix_Throws()
+    {
+        var siblingRoot = $"{tempRoot}-sibling";
+        Directory.CreateDirectory(siblingRoot);
+        File.WriteAllText(Path.Combine(siblingRoot, "secret.json"), "[]");
+
+        using var cleanup = new TemporaryDirectoryCleanup(siblingRoot);
+        using var source = new FolderArchiveSource(tempRoot);
+
+        var action = async () => await source.FileExistsAsync($"../{Path.GetFileName(siblingRoot)}/secret.json", CancellationToken.None);
+
+        Assert.That(action, Throws.TypeOf<InvalidOperationException>());
+    }
+
+    private sealed class TemporaryDirectoryCleanup(string path) : IDisposable
+    {
+        public void Dispose()
+        {
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, recursive: true);
+            }
+        }
+    }
 }

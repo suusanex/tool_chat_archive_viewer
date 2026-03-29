@@ -21,7 +21,7 @@ public sealed class ZipArchiveSource : IArchiveSource
         }
 
         this.zipPath = Path.GetFullPath(zipPath);
-        extractRoot = Path.Combine(Path.GetTempPath(), $"chat-archive-viewer-{Guid.NewGuid():N}");
+        extractRoot = Path.GetFullPath(Path.Combine(Path.GetTempPath(), $"chat-archive-viewer-{Guid.NewGuid():N}"));
         Directory.CreateDirectory(extractRoot);
         DisplayPath = this.zipPath;
 
@@ -66,7 +66,10 @@ public sealed class ZipArchiveSource : IArchiveSource
             }
 
             var destinationPath = Path.GetFullPath(Path.Combine(extractRoot, entry.FullName));
-            if (!destinationPath.StartsWith(extractRoot, StringComparison.OrdinalIgnoreCase))
+            var relativePath = Path.GetRelativePath(extractRoot, destinationPath);
+            if (relativePath.Equals("..", StringComparison.Ordinal) ||
+                relativePath.StartsWith($"..{Path.DirectorySeparatorChar}", StringComparison.Ordinal) ||
+                Path.IsPathRooted(relativePath))
             {
                 throw new InvalidDataException($"Invalid zip entry path: {entry.FullName}");
             }
