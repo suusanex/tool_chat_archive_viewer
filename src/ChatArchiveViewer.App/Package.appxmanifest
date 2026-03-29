@@ -15,7 +15,7 @@
   <mp:PhoneIdentity PhoneProductId="1033b6c3-decc-4e60-85c5-162250e64a84" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Chat Archive Viewer</DisplayName>
+    <DisplayName>Local Chat Archive Viewer</DisplayName>
     <PublisherDisplayName>User Name</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -34,8 +34,8 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Chat Archive Viewer"
-        Description="Unofficial local chat archive viewer"
+        DisplayName="Local Chat Archive Viewer"
+        Description="Local-only chat archive viewer"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">

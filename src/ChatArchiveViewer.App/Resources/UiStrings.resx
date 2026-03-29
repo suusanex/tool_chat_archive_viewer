@@ -47,7 +47,7 @@
   <data name="About.VersionPrefix" xml:space="preserve"><value>Version: </value></data>
   <data name="About.OpenPrivacyPolicy" xml:space="preserve"><value>Open Privacy Policy</value></data>
   <data name="About.LicensePlaceholder" xml:space="preserve"><value>Library and license list can be added here in future updates.</value></data>
-  <data name="About.AppName" xml:space="preserve"><value>Chat Archive Viewer</value></data>
+  <data name="About.AppName" xml:space="preserve"><value>Local Chat Archive Viewer</value></data>
   <data name="About.Disclaimer" xml:space="preserve"><value>Unofficial local archive viewer. This app is not affiliated with Slack.</value></data>
   <data name="About.PrivacySummary" xml:space="preserve"><value>This app processes only user-selected local files and does not send data externally.</value></data>
   <data name="About.SupportedFormats" xml:space="preserve"><value>Supported format (v1): Slack JSON export</value></data>

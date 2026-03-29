@@ -9,6 +9,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <NavigationView x:Name="RootNavigation"
                         IsBackButtonVisible="Collapsed"
+                        IsPaneToggleButtonVisible="False"
                         IsSettingsVisible="False"
                         PaneDisplayMode="Auto"
                         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"

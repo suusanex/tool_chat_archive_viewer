@@ -72,6 +72,11 @@ public sealed partial class MainPage : Page
         await OpenBundledSampleAsync(launchOptions.AutoLoadSample.Value);
     }
 
+    public void ToggleNavigationPane()
+    {
+        RootNavigation.IsPaneOpen = !RootNavigation.IsPaneOpen;
+    }
+
     private async void OnOpenSampleClick(object sender, RoutedEventArgs e)
     {
         _ = sender;

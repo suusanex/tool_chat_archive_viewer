@@ -44,6 +44,7 @@ public partial class App : Application
                     services.AddSingleton<SettingsViewModel>();
 
                     services.AddTransient<Views.MainPage>();
+                    services.AddTransient<Views.MainWindow>();
                     services.AddTransient<Views.AboutPage>();
                     services.AddTransient<Views.SettingsPage>();
                     services.AddTransient<Views.SearchPage>();
@@ -76,20 +77,20 @@ public partial class App : Application
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         _ = args;
-        window ??= new Window();
-
-        var mainPage = Host.Services.GetRequiredService<Views.MainPage>();
-        window.Content = mainPage;
+        window ??= Host.Services.GetRequiredService<Views.MainWindow>();
+        ApplyWindowIdentity(window);
 
         var windowProvider = Host.Services.GetRequiredService<IWindowProvider>();
         windowProvider.CurrentWindow = window;
 
-        var settingsService = Host.Services.GetRequiredService<IAppSettingsService>();
-        if (window.Content is FrameworkElement element)
-        {
-            element.RequestedTheme = settingsService.CurrentTheme;
-        }
-
         window.Activate();
+        ApplyWindowIdentity(window);
+    }
+
+    private static void ApplyWindowIdentity(Window window)
+    {
+        ArgumentNullException.ThrowIfNull(window);
+        window.Title = AppIdentity.AppName;
+        window.AppWindow.Title = AppIdentity.AppName;
     }
 }
