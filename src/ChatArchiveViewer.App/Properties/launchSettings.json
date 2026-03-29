@@ -1,10 +1,18 @@
 {
   "profiles": {
-    "ChatArchiveViewer.App (Package)": {
+    "LocalChatArchiveViewer.App (Package)": {
       "commandName": "MsixPackage"
     },
-    "ChatArchiveViewer.App (Unpackaged)": {
+    "LocalChatArchiveViewer.App (Unpackaged)": {
       "commandName": "Project"
+    },
+    "LocalChatArchiveViewer.App (Unpackaged, English Debug)": {
+      "commandName": "Project",
+      "commandLineArgs": "--debug-language-en-us"
+    },
+    "LocalChatArchiveViewer.App (Unpackaged, Language Override Off)": {
+      "commandName": "Project",
+      "commandLineArgs": "--debug-language-off"
     }
   }
 }

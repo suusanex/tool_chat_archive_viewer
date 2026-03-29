@@ -74,6 +74,27 @@ public sealed class ConversationDateCountServiceTests
         Assert.That(source.Calls, Has.Count.EqualTo(2));
     }
 
+    // 会話IDの大文字小文字差分では同じキャッシュを再利用する
+    [Test]
+    public async Task UT_IT_330d__LoadMonthCountsAsync_ReusesCacheCaseInsensitively()
+    {
+        var source = new FakeCountSource
+        {
+            Counts =
+            {
+                [new DateOnly(2026, 1, 1)] = 7
+            }
+        };
+        var sut = new ConversationDateCountService(source);
+
+        var first = await sut.LoadMonthCountsAsync("general", [new DateOnly(2026, 1, 1)], CancellationToken.None);
+        var second = await sut.LoadMonthCountsAsync("GENERAL", [new DateOnly(2026, 1, 1)], CancellationToken.None);
+
+        Assert.That(first[new DateOnly(2026, 1, 1)], Is.EqualTo(7));
+        Assert.That(second[new DateOnly(2026, 1, 1)], Is.EqualTo(7));
+        Assert.That(source.Calls, Has.Count.EqualTo(1));
+    }
+
     private sealed class FakeCountSource : IConversationDayMessageCountSource
     {
         public Dictionary<DateOnly, int> Counts { get; } = new();

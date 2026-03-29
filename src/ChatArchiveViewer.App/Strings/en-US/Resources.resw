@@ -12,10 +12,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppDisplayName" xml:space="preserve"><value>Local Chat Archive Viewer</value></data>
+  <data name="AppDescription" xml:space="preserve"><value>Local-only chat archive viewer</value></data>
+  <data name="AppPublisherDisplayName" xml:space="preserve"><value>suusanex (Sudo)</value></data>
+  <data name="App.DisplayName" xml:space="preserve"><value>Local Chat Archive Viewer</value></data>
   <data name="Nav.Browse" xml:space="preserve"><value>Browse</value></data>
   <data name="Nav.Search" xml:space="preserve"><value>Search</value></data>
   <data name="Nav.Settings" xml:space="preserve"><value>Settings</value></data>
   <data name="Nav.About" xml:space="preserve"><value>About</value></data>
+  <data name="Entry.OpenGroup.Title" xml:space="preserve"><value>Start by opening a chat log</value></data>
+  <data name="Entry.OpenGroup.Description" xml:space="preserve"><value>Choose one of the three options below to start reading a local chat archive.</value></data>
+  <data name="Entry.OpenGroup.Hint" xml:space="preserve"><value>The included sample data can be opened directly, or used as the initial selection in the folder and ZIP dialogs.</value></data>
+  <data name="Entry.OpenSample" xml:space="preserve"><value>Open Sample</value></data>
   <data name="Browse.OpenFolder" xml:space="preserve"><value>Open Folder</value></data>
   <data name="Browse.OpenZip" xml:space="preserve"><value>Open ZIP</value></data>
   <data name="Browse.Channels" xml:space="preserve"><value>Channels</value></data>
@@ -43,7 +51,7 @@
   <data name="About.VersionPrefix" xml:space="preserve"><value>Version: </value></data>
   <data name="About.OpenPrivacyPolicy" xml:space="preserve"><value>Open Privacy Policy</value></data>
   <data name="About.LicensePlaceholder" xml:space="preserve"><value>Library and license list can be added here in future updates.</value></data>
-  <data name="About.AppName" xml:space="preserve"><value>Chat Archive Viewer</value></data>
+  <data name="About.AppName" xml:space="preserve"><value>Local Chat Archive Viewer</value></data>
   <data name="About.Disclaimer" xml:space="preserve"><value>Unofficial local archive viewer. This app is not affiliated with Slack.</value></data>
   <data name="About.PrivacySummary" xml:space="preserve"><value>This app processes only user-selected local files and does not send data externally.</value></data>
   <data name="About.SupportedFormats" xml:space="preserve"><value>Supported format (v1): Slack JSON export</value></data>
@@ -56,6 +64,7 @@
   <data name="Dialog.Close" xml:space="preserve"><value>Close</value></data>
   <data name="Error.OpenArchive.NoSupportedFormat" xml:space="preserve"><value>No supported archive format was detected.</value></data>
   <data name="Error.OpenArchive.Failed" xml:space="preserve"><value>Failed to open archive.</value></data>
+  <data name="Error.OpenSample.Missing" xml:space="preserve"><value>Bundled sample data is not available in this installation.</value></data>
   <data name="Error.Search.Failed" xml:space="preserve"><value>Search failed.</value></data>
   <data name="Error.PrivacyPolicy.OpenFailed" xml:space="preserve"><value>Unable to open privacy policy.</value></data>
   <data name="Error.Browse.CountsFailed" xml:space="preserve"><value>Unable to load message counts for the selected month.</value></data>

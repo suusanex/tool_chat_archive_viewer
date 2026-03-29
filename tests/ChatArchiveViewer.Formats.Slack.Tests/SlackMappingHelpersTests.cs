@@ -27,4 +27,14 @@ public sealed class SlackMappingHelpersTests
         var display = SlackMappingHelpers.ResolveDisplayName(user, null, "U1", null);
         Assert.That(display, Is.EqualTo("Display"));
     }
+
+    [Test]
+    public void ParseSlackTimestamp_WithFractionalMilliseconds_TruncatesInsteadOfRoundingUp()
+    {
+        var timestamp = SlackMappingHelpers.ParseSlackTimestamp("1700000000.9996");
+
+        Assert.That(
+            timestamp,
+            Is.EqualTo(DateTimeOffset.FromUnixTimeMilliseconds(1_700_000_000_999L)));
+    }
 }

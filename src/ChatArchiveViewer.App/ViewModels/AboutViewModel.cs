@@ -10,10 +10,10 @@ public sealed partial class AboutViewModel : ViewModelBase
     private readonly IExternalLauncher externalLauncher;
 
     [ObservableProperty]
-    private string appName = LocalizedStrings.Get("About.AppName");
+    private string appName = AppIdentity.AppName;
 
     [ObservableProperty]
-    private string version = "1.0.0";
+    private string version = AppIdentity.Version;
 
     [ObservableProperty]
     private string disclaimer = LocalizedStrings.Get("About.Disclaimer");

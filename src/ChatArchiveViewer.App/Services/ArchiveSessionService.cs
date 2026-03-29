@@ -8,6 +8,8 @@ public sealed class ArchiveSessionService : IArchiveSessionService, IConversatio
     private IArchiveSource? source;
     private IArchiveFormatProvider? provider;
 
+    public event EventHandler? ArchiveChanged;
+
     public ChatArchive? Archive { get; private set; }
 
     public bool HasArchive => Archive is not null && source is not null && provider is not null;
@@ -26,6 +28,7 @@ public sealed class ArchiveSessionService : IArchiveSessionService, IConversatio
         source = newSource;
         provider = newProvider;
         Archive = archive;
+        ArchiveChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public async Task<IReadOnlyList<ChatMessage>> LoadMessagesAsync(string conversationId, DateOnly? date, CancellationToken ct)

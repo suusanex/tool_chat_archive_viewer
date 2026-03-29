@@ -19,7 +19,9 @@ public partial class App : Application
             .ConfigureServices(
                 (_, services) =>
                 {
+                    services.AddSingleton(AppLaunchOptions.Parse(Environment.GetCommandLineArgs()));
                     services.AddSingleton<IWindowProvider, WindowProvider>();
+                    services.AddSingleton<IBundledSampleLocator>(_ => new BundledSampleLocator(AppContext.BaseDirectory));
                     services.AddSingleton<IAppSettingsService, AppSettingsService>();
                     services.AddSingleton<IExternalLauncher, ExternalLauncher>();
                     services.AddSingleton<ArchiveSessionService>();
@@ -27,6 +29,7 @@ public partial class App : Application
                     services.AddSingleton<IConversationDayMessageCountSource>(sp => sp.GetRequiredService<ArchiveSessionService>());
                     services.AddSingleton<IConversationDateCountService, ConversationDateCountService>();
                     services.AddSingleton<IArchiveOpenService, ArchiveOpenService>();
+                    services.AddSingleton<IArchiveWorkflowService, ArchiveWorkflowService>();
 
                     services.AddSingleton<IArchiveFormatRegistry, ArchiveFormatRegistry>();
                     services.AddSingleton<IArchiveLoadService, ArchiveLoadService>();
@@ -40,8 +43,11 @@ public partial class App : Application
                     services.AddSingleton<SearchViewModel>();
                     services.AddSingleton<AboutViewModel>();
                     services.AddSingleton<SettingsViewModel>();
+                    services.AddSingleton<MainPageViewModel>();
 
                     services.AddTransient<Views.MainPage>();
+                    services.AddTransient<Views.BrowsePage>();
+                    services.AddTransient<Views.MainWindow>();
                     services.AddTransient<Views.AboutPage>();
                     services.AddTransient<Views.SettingsPage>();
                     services.AddTransient<Views.SearchPage>();
@@ -74,20 +80,20 @@ public partial class App : Application
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         _ = args;
-        window ??= new Window();
-
-        var mainPage = Host.Services.GetRequiredService<Views.MainPage>();
-        window.Content = mainPage;
+        window ??= Host.Services.GetRequiredService<Views.MainWindow>();
+        ApplyWindowIdentity(window);
 
         var windowProvider = Host.Services.GetRequiredService<IWindowProvider>();
         windowProvider.CurrentWindow = window;
 
-        var settingsService = Host.Services.GetRequiredService<IAppSettingsService>();
-        if (window.Content is FrameworkElement element)
-        {
-            element.RequestedTheme = settingsService.CurrentTheme;
-        }
-
         window.Activate();
+        ApplyWindowIdentity(window);
+    }
+
+    private static void ApplyWindowIdentity(Window window)
+    {
+        ArgumentNullException.ThrowIfNull(window);
+        window.Title = AppIdentity.AppName;
+        window.AppWindow.Title = AppIdentity.AppName;
     }
 }
