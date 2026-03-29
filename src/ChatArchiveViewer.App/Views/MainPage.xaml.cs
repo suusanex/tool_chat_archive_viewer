@@ -21,12 +21,15 @@ public sealed partial class MainPage : Page
     private readonly AboutViewModel aboutViewModel;
     private readonly SettingsViewModel settingsViewModel;
     private readonly IArchiveOpenService archiveOpenService;
+    private readonly IBundledSampleLocator bundledSampleLocator;
     private readonly IArchiveFormatRegistry formatRegistry;
     private readonly IArchiveLoadService archiveLoadService;
     private readonly IArchiveSessionService archiveSessionService;
     private readonly IAppSettingsService appSettingsService;
+    private readonly AppLaunchOptions launchOptions;
     private readonly ILogger<MainPage> logger;
     private NarrowBrowseStep narrowStep = NarrowBrowseStep.Channels;
+    private bool launchOptionsHandled;
 
     public MainPage()
     {
@@ -38,10 +41,12 @@ public sealed partial class MainPage : Page
         aboutViewModel = services.GetRequiredService<AboutViewModel>();
         settingsViewModel = services.GetRequiredService<SettingsViewModel>();
         archiveOpenService = services.GetRequiredService<IArchiveOpenService>();
+        bundledSampleLocator = services.GetRequiredService<IBundledSampleLocator>();
         formatRegistry = services.GetRequiredService<IArchiveFormatRegistry>();
         archiveLoadService = services.GetRequiredService<IArchiveLoadService>();
         archiveSessionService = services.GetRequiredService<IArchiveSessionService>();
         appSettingsService = services.GetRequiredService<IAppSettingsService>();
+        launchOptions = services.GetRequiredService<AppLaunchOptions>();
         logger = services.GetRequiredService<ILogger<MainPage>>();
         this.ApplyLocalization();
 
@@ -51,6 +56,27 @@ public sealed partial class MainPage : Page
         RootNavigation.SelectedItem = BrowseNavItem;
         ShowPane("browse");
         SizeChanged += OnMainPageSizeChanged;
+        Loaded += OnMainPageLoaded;
+    }
+
+    private async void OnMainPageLoaded(object sender, RoutedEventArgs e)
+    {
+        _ = sender;
+        _ = e;
+        if (launchOptionsHandled || launchOptions.AutoLoadSample is null)
+        {
+            return;
+        }
+
+        launchOptionsHandled = true;
+        await OpenBundledSampleAsync(launchOptions.AutoLoadSample.Value);
+    }
+
+    private async void OnOpenSampleClick(object sender, RoutedEventArgs e)
+    {
+        _ = sender;
+        _ = e;
+        await OpenBundledSampleAsync(BundledSampleKind.Folder);
     }
 
     private async void OnOpenFolderClick(object sender, RoutedEventArgs e)
@@ -68,42 +94,18 @@ public sealed partial class MainPage : Page
     private async Task OpenArchiveAsync(bool isZip)
     {
         IArchiveSource? source = null;
-        var sessionTransferred = false;
         try
         {
             using var cts = new CancellationTokenSource();
             source = isZip
-                ? await archiveOpenService.OpenZipAsync(cts.Token)
-                : await archiveOpenService.OpenFolderAsync(cts.Token);
+                ? await archiveOpenService.OpenZipAsync(bundledSampleLocator.SampleZipPath, cts.Token)
+                : await archiveOpenService.OpenFolderAsync(bundledSampleLocator.SampleFolderPath, cts.Token);
             if (source is null)
             {
                 return;
             }
 
-            var detections = await formatRegistry.DetectAllAsync(source, cts.Token);
-            var best = detections
-                .Where(x => x.IsDetected)
-                .OrderByDescending(x => x.Confidence)
-                .FirstOrDefault();
-
-            if (best is null)
-            {
-                await ShowErrorAsync(LocalizedStrings.Get("Error.OpenArchive.NoSupportedFormat"));
-                return;
-            }
-
-            var provider = formatRegistry.GetProvider(best.FormatId)
-                ?? throw new InvalidOperationException($"Provider not found: {best.FormatId}");
-            var archive = await archiveLoadService.LoadAsync(source, provider, progress: null, cts.Token);
-            await archiveSessionService.SetCurrentAsync(source, provider, archive);
-            sessionTransferred = true;
-
-            overviewViewModel.SetArchive(archive);
-            await browseViewModel.RefreshFromSessionAsync();
-            RefreshBrowseBindings();
-            searchViewModel.SearchCommand.NotifyCanExecuteChanged();
-            ShowPane("browse");
-            RootNavigation.SelectedItem = BrowseNavItem;
+            source = await LoadArchiveAsync(source, cts.Token);
         }
         catch (Exception ex)
         {
@@ -112,11 +114,72 @@ public sealed partial class MainPage : Page
         }
         finally
         {
-            if (!sessionTransferred && source is not null)
+            if (source is not null)
             {
                 await source.DisposeAsync();
             }
         }
+    }
+
+    private async Task OpenBundledSampleAsync(BundledSampleKind kind)
+    {
+        IArchiveSource? source = null;
+        try
+        {
+            using var cts = new CancellationTokenSource();
+            source = await archiveOpenService.OpenBundledSampleAsync(kind, cts.Token);
+            source = await LoadArchiveAsync(source, cts.Token);
+        }
+        catch (FileNotFoundException ex)
+        {
+            logger.LogError(ex, "Bundled sample file is missing. Exception={Exception}", ex.ToString());
+            await ShowErrorAsync(LocalizedStrings.Get("Error.OpenSample.Missing"));
+        }
+        catch (DirectoryNotFoundException ex)
+        {
+            logger.LogError(ex, "Bundled sample directory is missing. Exception={Exception}", ex.ToString());
+            await ShowErrorAsync(LocalizedStrings.Get("Error.OpenSample.Missing"));
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Open bundled sample failed. Exception={Exception}", ex.ToString());
+            await ShowErrorAsync(LocalizedStrings.Get("Error.OpenArchive.Failed"));
+        }
+        finally
+        {
+            if (source is not null)
+            {
+                await source.DisposeAsync();
+            }
+        }
+    }
+
+    private async Task<IArchiveSource?> LoadArchiveAsync(IArchiveSource source, CancellationToken ct)
+    {
+        var detections = await formatRegistry.DetectAllAsync(source, ct);
+        var best = detections
+            .Where(x => x.IsDetected)
+            .OrderByDescending(x => x.Confidence)
+            .FirstOrDefault();
+
+        if (best is null)
+        {
+            await ShowErrorAsync(LocalizedStrings.Get("Error.OpenArchive.NoSupportedFormat"));
+            return source;
+        }
+
+        var provider = formatRegistry.GetProvider(best.FormatId)
+            ?? throw new InvalidOperationException($"Provider not found: {best.FormatId}");
+        var archive = await archiveLoadService.LoadAsync(source, provider, progress: null, ct);
+        await archiveSessionService.SetCurrentAsync(source, provider, archive);
+
+        overviewViewModel.SetArchive(archive);
+        await browseViewModel.RefreshFromSessionAsync();
+        searchViewModel.SearchCommand.NotifyCanExecuteChanged();
+        RootNavigation.SelectedItem = BrowseNavItem;
+        ShowPane("browse");
+        RefreshBrowseBindings();
+        return null;
     }
 
     private async void OnConversationSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -257,6 +320,7 @@ public sealed partial class MainPage : Page
 
     private void RefreshBrowseBindings()
     {
+        var hasArchive = archiveSessionService.HasArchive;
         ArchiveNameText.Text = overviewViewModel.ArchiveName;
         ArchiveSummaryText.Text = $"{overviewViewModel.FormatDisplay} / {overviewViewModel.Summary}";
         BreadcrumbText.Text = browseViewModel.Breadcrumb;
@@ -271,6 +335,9 @@ public sealed partial class MainPage : Page
             NarrowBrowseStep.Dates => LocalizedStrings.Get("Browse.NarrowStep.Dates"),
             _ => LocalizedStrings.Get("Browse.NarrowStep.Messages")
         };
+        SearchNavItem.Visibility = hasArchive ? Visibility.Visible : Visibility.Collapsed;
+        ArchiveSummaryPanel.Visibility = hasArchive ? Visibility.Visible : Visibility.Collapsed;
+        BrowseContentPanel.Visibility = hasArchive ? Visibility.Visible : Visibility.Collapsed;
         ApplyBrowseLayoutMode();
     }
 
@@ -378,6 +445,10 @@ public sealed partial class MainPage : Page
         SettingsNavItem.Content = LocalizedStrings.Get("Nav.Settings");
         AboutNavItem.Content = LocalizedStrings.Get("Nav.About");
 
+        EntryActionTitleText.Text = LocalizedStrings.Get("Entry.OpenGroup.Title");
+        EntryActionDescriptionText.Text = LocalizedStrings.Get("Entry.OpenGroup.Description");
+        EntryActionHintText.Text = LocalizedStrings.Get("Entry.OpenGroup.Hint");
+        OpenSampleButton.Content = LocalizedStrings.Get("Entry.OpenSample");
         OpenFolderButton.Content = LocalizedStrings.Get("Browse.OpenFolder");
         OpenZipButton.Content = LocalizedStrings.Get("Browse.OpenZip");
         NarrowBackButton.Content = LocalizedStrings.Get("Browse.Back");

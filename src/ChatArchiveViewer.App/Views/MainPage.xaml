@@ -17,7 +17,8 @@
                 <NavigationViewItem x:Name="BrowseNavItem"
                                     Icon="Library" />
                 <NavigationViewItem x:Name="SearchNavItem"
-                                    Icon="Find" />
+                                    Icon="Find"
+                                    Visibility="Collapsed" />
             </NavigationView.MenuItems>
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem x:Name="SettingsNavItem"
@@ -36,15 +37,54 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal"
-                                Spacing="8">
-                        <Button x:Name="OpenFolderButton"
-                                Click="OnOpenFolderClick" />
-                        <Button x:Name="OpenZipButton"
-                                Click="OnOpenZipClick" />
-                    </StackPanel>
+                    <Border x:Name="EntryActionPanel"
+                            Padding="20"
+                            MaxWidth="720"
+                            HorizontalAlignment="Center"
+                            CornerRadius="8"
+                            BorderThickness="1"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+                        <StackPanel Spacing="12">
+                            <TextBlock x:Name="EntryActionTitleText"
+                                       FontSize="24"
+                                       FontWeight="SemiBold"
+                                       TextAlignment="Center"
+                                       TextWrapping="WrapWholeWords" />
+                            <TextBlock x:Name="EntryActionDescriptionText"
+                                       Opacity="0.85"
+                                       TextAlignment="Center"
+                                       TextWrapping="WrapWholeWords" />
+                            <TextBlock x:Name="EntryActionHintText"
+                                       Opacity="0.75"
+                                       TextAlignment="Center"
+                                       TextWrapping="WrapWholeWords" />
+                            <Grid ColumnSpacing="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="OpenSampleButton"
+                                        MinHeight="40"
+                                        HorizontalAlignment="Stretch"
+                                        Click="OnOpenSampleClick" />
+                                <Button x:Name="OpenFolderButton"
+                                        Grid.Column="1"
+                                        MinHeight="40"
+                                        HorizontalAlignment="Stretch"
+                                        Click="OnOpenFolderClick" />
+                                <Button x:Name="OpenZipButton"
+                                        Grid.Column="2"
+                                        MinHeight="40"
+                                        HorizontalAlignment="Stretch"
+                                        Click="OnOpenZipClick" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
 
-                    <StackPanel Grid.Row="1"
+                    <StackPanel x:Name="ArchiveSummaryPanel"
+                                Grid.Row="1"
+                                Visibility="Collapsed"
                                 Spacing="4">
                         <TextBlock x:Name="ArchiveNameText"
                                    FontSize="18"
@@ -55,7 +95,9 @@
                                    Opacity="0.8" />
                     </StackPanel>
 
-                    <Grid Grid.Row="2"
+                    <Grid x:Name="BrowseContentPanel"
+                          Grid.Row="2"
+                          Visibility="Collapsed"
                           RowSpacing="8">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

@@ -2,6 +2,7 @@ using ChatArchiveViewer.Core.Models;
 using ChatArchiveViewer.Core.Services;
 using ChatArchiveViewer.Formats.Slack;
 using Microsoft.Extensions.Logging.Abstractions;
+using System.Globalization;
 
 namespace ChatArchiveViewer.Formats.Slack.Tests;
 

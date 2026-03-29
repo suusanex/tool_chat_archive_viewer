@@ -16,6 +16,10 @@
   <data name="Nav.Search" xml:space="preserve"><value>Search</value></data>
   <data name="Nav.Settings" xml:space="preserve"><value>Settings</value></data>
   <data name="Nav.About" xml:space="preserve"><value>About</value></data>
+  <data name="Entry.OpenGroup.Title" xml:space="preserve"><value>Start by opening a chat log</value></data>
+  <data name="Entry.OpenGroup.Description" xml:space="preserve"><value>Choose one of the three options below to start reading a local chat archive.</value></data>
+  <data name="Entry.OpenGroup.Hint" xml:space="preserve"><value>The included sample data can be opened directly, or used as the initial selection in the folder and ZIP dialogs.</value></data>
+  <data name="Entry.OpenSample" xml:space="preserve"><value>Open Sample</value></data>
   <data name="Browse.OpenFolder" xml:space="preserve"><value>Open Folder</value></data>
   <data name="Browse.OpenZip" xml:space="preserve"><value>Open ZIP</value></data>
   <data name="Browse.Channels" xml:space="preserve"><value>Channels</value></data>
@@ -56,6 +60,7 @@
   <data name="Dialog.Close" xml:space="preserve"><value>Close</value></data>
   <data name="Error.OpenArchive.NoSupportedFormat" xml:space="preserve"><value>No supported archive format was detected.</value></data>
   <data name="Error.OpenArchive.Failed" xml:space="preserve"><value>Failed to open archive.</value></data>
+  <data name="Error.OpenSample.Missing" xml:space="preserve"><value>Bundled sample data is not available in this installation.</value></data>
   <data name="Error.Search.Failed" xml:space="preserve"><value>Search failed.</value></data>
   <data name="Error.PrivacyPolicy.OpenFailed" xml:space="preserve"><value>Unable to open privacy policy.</value></data>
   <data name="Error.Browse.CountsFailed" xml:space="preserve"><value>Unable to load message counts for the selected month.</value></data>

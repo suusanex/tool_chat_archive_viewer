@@ -19,7 +19,9 @@ public partial class App : Application
             .ConfigureServices(
                 (_, services) =>
                 {
+                    services.AddSingleton(AppLaunchOptions.Parse(Environment.GetCommandLineArgs()));
                     services.AddSingleton<IWindowProvider, WindowProvider>();
+                    services.AddSingleton<IBundledSampleLocator>(_ => new BundledSampleLocator(AppContext.BaseDirectory));
                     services.AddSingleton<IAppSettingsService, AppSettingsService>();
                     services.AddSingleton<IExternalLauncher, ExternalLauncher>();
                     services.AddSingleton<ArchiveSessionService>();

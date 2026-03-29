@@ -8,6 +8,7 @@
     <Project Path="src/ChatArchiveViewer.Formats.Slack/ChatArchiveViewer.Formats.Slack.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/ChatArchiveViewer.App.Tests/ChatArchiveViewer.App.Tests.csproj" />
     <Project Path="tests/ChatArchiveViewer.Core.Tests/ChatArchiveViewer.Core.Tests.csproj" />
     <Project Path="tests/ChatArchiveViewer.Formats.Slack.Tests/ChatArchiveViewer.Formats.Slack.Tests.csproj" />
   </Folder>

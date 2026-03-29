@@ -134,14 +134,14 @@ public sealed class FolderArchiveSourceTests
 
     // TP-060i: ルート接頭辞が一致する兄弟フォルダへのパスエスケープは拒否する
     [Test]
-    public void UT_IT_060i__FileExistsAsync_PathEscapesToSiblingWithSharedPrefix_Throws()
+    public async Task UT_IT_060i__FileExistsAsync_PathEscapesToSiblingWithSharedPrefix_Throws()
     {
         var siblingRoot = $"{tempRoot}-sibling";
         Directory.CreateDirectory(siblingRoot);
         File.WriteAllText(Path.Combine(siblingRoot, "secret.json"), "[]");
 
         using var cleanup = new TemporaryDirectoryCleanup(siblingRoot);
-        using var source = new FolderArchiveSource(tempRoot);
+        await using var source = new FolderArchiveSource(tempRoot);
         var escapePath = Path.Combine("..", Path.GetFileName(siblingRoot), "secret.json")
             .Replace(Path.DirectorySeparatorChar, '/');
 

@@ -16,6 +16,10 @@
   <data name="Nav.Search" xml:space="preserve"><value>検索</value></data>
   <data name="Nav.Settings" xml:space="preserve"><value>設定</value></data>
   <data name="Nav.About" xml:space="preserve"><value>このアプリについて</value></data>
+  <data name="Entry.OpenGroup.Title" xml:space="preserve"><value>最初にチャットログを開いてください</value></data>
+  <data name="Entry.OpenGroup.Description" xml:space="preserve"><value>ローカルのチャットアーカイブを読み始めるには、次の 3 つの方法から 1 つを選択します。</value></data>
+  <data name="Entry.OpenGroup.Hint" xml:space="preserve"><value>同梱サンプルを直接開くことも、フォルダー選択 / ZIP 選択ダイアログの初期選択として使うこともできます。</value></data>
+  <data name="Entry.OpenSample" xml:space="preserve"><value>サンプルを開く</value></data>
   <data name="Browse.OpenFolder" xml:space="preserve"><value>フォルダーを開く</value></data>
   <data name="Browse.OpenZip" xml:space="preserve"><value>ZIP を開く</value></data>
   <data name="Browse.Channels" xml:space="preserve"><value>チャンネル</value></data>
@@ -56,6 +60,7 @@
   <data name="Dialog.Close" xml:space="preserve"><value>閉じる</value></data>
   <data name="Error.OpenArchive.NoSupportedFormat" xml:space="preserve"><value>対応しているアーカイブ形式が検出されませんでした。</value></data>
   <data name="Error.OpenArchive.Failed" xml:space="preserve"><value>アーカイブを開けませんでした。</value></data>
+  <data name="Error.OpenSample.Missing" xml:space="preserve"><value>このインストールには同梱サンプルデータが存在しません。</value></data>
   <data name="Error.Search.Failed" xml:space="preserve"><value>検索に失敗しました。</value></data>
   <data name="Error.PrivacyPolicy.OpenFailed" xml:space="preserve"><value>プライバシーポリシーを開けませんでした。</value></data>
   <data name="Error.Browse.CountsFailed" xml:space="preserve"><value>選択した月のメッセージ件数を読み込めませんでした。</value></data>
