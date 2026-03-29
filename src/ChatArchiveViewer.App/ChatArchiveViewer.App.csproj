@@ -8,6 +8,9 @@
 		<!-- WinUI 3 -->
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
+       <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+		<WindowsAppSdkBootstrapInitialize>false</WindowsAppSdkBootstrapInitialize>
+		<WindowsAppSdkDeploymentManagerInitialize>false</WindowsAppSdkDeploymentManagerInitialize>
       <Packaged Condition="'$(Packaged)' == '' and '$(BuildingInsideVisualStudio)' == 'true'">true</Packaged>
 		<WindowsPackageType Condition="'$(Packaged)' != 'true' and '$(GenerateAppxPackageOnBuild)' != 'true' and '$(AppxPackage)' != 'true'">None</WindowsPackageType>
 
