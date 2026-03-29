@@ -1,4 +1,3 @@
-using System.Globalization;
 using ChatArchiveViewer.Core.Models;
 using ChatArchiveViewer.Formats.Slack;
 
