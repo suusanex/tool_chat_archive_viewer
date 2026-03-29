@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "ChatArchiveViewer.App (Package)": {
+    "LocalChatArchiveViewer.App (Package)": {
       "commandName": "MsixPackage"
     },
-    "ChatArchiveViewer.App (Unpackaged)": {
+    "LocalChatArchiveViewer.App (Unpackaged)": {
       "commandName": "Project"
     }
   }
