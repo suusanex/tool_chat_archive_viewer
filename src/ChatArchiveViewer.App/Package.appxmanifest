@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="1033b6c3-decc-4e60-85c5-162250e64a84"
-    Publisher="CN=User Name"
+    Name="suusanexSudo.LocalChatArchiveViewer"
+    Publisher="CN=729A3AB0-2696-4AFC-A746-81680C00CA8E"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="1033b6c3-decc-4e60-85c5-162250e64a84" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="54047cda-d593-4026-8ecb-cf3fdfe982d4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Local Chat Archive Viewer</DisplayName>
-    <PublisherDisplayName>User Name</PublisherDisplayName>
+    <PublisherDisplayName>suusanex (Sudo)</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

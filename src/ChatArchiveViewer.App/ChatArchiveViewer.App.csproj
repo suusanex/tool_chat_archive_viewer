@@ -34,6 +34,8 @@
 		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
 		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &gt;= 8">win-x86;win-x64;win-arm64</RuntimeIdentifiers>
 		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &lt; 8">win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+		<GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
+		<PackageIcon>icon.ico</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -76,6 +78,12 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ChatArchiveViewer.Core\ChatArchiveViewer.Core.csproj" />
 		<ProjectReference Include="..\ChatArchiveViewer.Formats.Slack\ChatArchiveViewer.Formats.Slack.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Assets\icon.ico">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<!-- 
