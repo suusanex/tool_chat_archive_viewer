@@ -29,6 +29,7 @@ public partial class App : Application
                     services.AddSingleton<IConversationDayMessageCountSource>(sp => sp.GetRequiredService<ArchiveSessionService>());
                     services.AddSingleton<IConversationDateCountService, ConversationDateCountService>();
                     services.AddSingleton<IArchiveOpenService, ArchiveOpenService>();
+                    services.AddSingleton<IArchiveWorkflowService, ArchiveWorkflowService>();
 
                     services.AddSingleton<IArchiveFormatRegistry, ArchiveFormatRegistry>();
                     services.AddSingleton<IArchiveLoadService, ArchiveLoadService>();
@@ -42,8 +43,10 @@ public partial class App : Application
                     services.AddSingleton<SearchViewModel>();
                     services.AddSingleton<AboutViewModel>();
                     services.AddSingleton<SettingsViewModel>();
+                    services.AddSingleton<MainPageViewModel>();
 
                     services.AddTransient<Views.MainPage>();
+                    services.AddTransient<Views.BrowsePage>();
                     services.AddTransient<Views.MainWindow>();
                     services.AddTransient<Views.AboutPage>();
                     services.AddTransient<Views.SettingsPage>();

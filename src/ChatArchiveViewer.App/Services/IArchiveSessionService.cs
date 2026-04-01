@@ -5,6 +5,8 @@ namespace ChatArchiveViewer.App.Services;
 
 public interface IArchiveSessionService : IAsyncDisposable
 {
+    event EventHandler? ArchiveChanged;
+
     ChatArchive? Archive { get; }
 
     bool HasArchive { get; }
