@@ -7,7 +7,7 @@ namespace ChatArchiveViewer.App.Services;
 public sealed class AppSettingsService : IAppSettingsService
 {
     private const string ThemeKey = "app.theme";
-    private const string PrivacyPolicyUrlValue = "https://example.com/privacy";
+    private const string PrivacyPolicyUrlValue = "https://suusanex.github.io/tool_chat_archive_viewer/pages/";
     private readonly ILogger<AppSettingsService> logger;
     private readonly string settingsFilePath;
     private readonly Dictionary<string, string> settings;
