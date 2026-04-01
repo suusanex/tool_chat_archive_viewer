@@ -10,8 +10,16 @@ public static class LocalizedStrings
         typeof(LocalizedStrings).Assembly);
 
     public static string Get(string key, string? fallback = null)
+        => GetCore(key, CultureInfo.CurrentUICulture, fallback);
+
+    public static string Get(string key, CultureInfo culture, string? fallback = null)
+        => GetCore(key, culture, fallback);
+
+    private static string GetCore(string key, CultureInfo culture, string? fallback)
     {
-        var value = ResourceManager.GetString(key, CultureInfo.CurrentUICulture);
+        ArgumentNullException.ThrowIfNull(culture);
+
+        var value = ResourceManager.GetString(key, culture);
         if (!string.IsNullOrWhiteSpace(value))
         {
             return value;
@@ -22,4 +30,7 @@ public static class LocalizedStrings
 
     public static string Format(string key, params object[] args)
         => string.Format(CultureInfo.CurrentUICulture, Get(key), args);
+
+    public static string Format(string key, CultureInfo culture, params object[] args)
+        => string.Format(culture, Get(key, culture), args);
 }

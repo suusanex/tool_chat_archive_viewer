@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using ChatArchiveViewer.App.Services;
 using Microsoft.UI.Xaml;
 
 namespace ChatArchiveViewer.App;
@@ -21,6 +22,7 @@ public static class Program
 
         WinRT.ComWrappersSupport.InitializeComWrappers();
         InitializeWindowsAppSdk();
+        ApplicationCulture.ApplySupportedCulture();
 
         Application.Start(
             _ =>

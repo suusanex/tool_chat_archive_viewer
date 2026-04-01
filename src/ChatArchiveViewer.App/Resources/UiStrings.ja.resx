@@ -12,6 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="App.DisplayName" xml:space="preserve"><value>Local Chat Archive Viewer</value></data>
   <data name="Nav.Browse" xml:space="preserve"><value>閲覧</value></data>
   <data name="Nav.Search" xml:space="preserve"><value>検索</value></data>
   <data name="Nav.Settings" xml:space="preserve"><value>設定</value></data>

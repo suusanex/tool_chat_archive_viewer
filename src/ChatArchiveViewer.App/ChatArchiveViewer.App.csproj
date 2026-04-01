@@ -18,6 +18,8 @@
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<DefaultLanguage>ja-JP</DefaultLanguage>
+		<NeutralLanguage>ja-JP</NeutralLanguage>
 		<RootNamespace>ChatArchiveViewer.App</RootNamespace>
 		<AssemblyName>LocalChatArchiveViewer.App</AssemblyName>
 		<AssemblyTitle>Local Chat Archive Viewer</AssemblyTitle>
