@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Globalization;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -18,11 +19,11 @@ public static class Program
     [STAThread]
     private static void Main(string[] args)
     {
-        _ = args;
+        var launchOptions = AppLaunchOptions.Parse(args);
 
         WinRT.ComWrappersSupport.InitializeComWrappers();
         InitializeWindowsAppSdk();
-        ApplicationCulture.ApplySupportedCulture();
+        ApplyStartupCulture(launchOptions);
 
         Application.Start(
             _ =>
@@ -32,6 +33,20 @@ public static class Program
                 SynchronizationContext.SetSynchronizationContext(context);
                 var app = new App();
             });
+    }
+
+    private static void ApplyStartupCulture(AppLaunchOptions launchOptions)
+    {
+        ArgumentNullException.ThrowIfNull(launchOptions);
+#if DEBUG
+        if (!string.IsNullOrWhiteSpace(launchOptions.DebugPrimaryLanguageOverride))
+        {
+            var requested = CultureInfo.GetCultureInfo(launchOptions.DebugPrimaryLanguageOverride);
+            ApplicationCulture.ApplySupportedCulture(requested);
+            return;
+        }
+#endif
+        ApplicationCulture.ApplySupportedCulture();
     }
 
     private static void InitializeWindowsAppSdk()

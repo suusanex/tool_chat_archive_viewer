@@ -29,4 +29,12 @@ public sealed class LocalizedStringsTests
 
         Assert.That(value, Is.EqualTo("設定"));
     }
+
+    [Test]
+    public void Get_WithoutCulture_ResolvesFromRuntimeResources()
+    {
+        var value = LocalizedStrings.Get("Nav.Browse");
+
+        Assert.That(value, Is.EqualTo("閲覧"));
+    }
 }

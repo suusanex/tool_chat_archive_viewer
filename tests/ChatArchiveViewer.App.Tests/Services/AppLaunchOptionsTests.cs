@@ -27,5 +27,32 @@ public sealed class AppLaunchOptionsTests
         var options = AppLaunchOptions.Parse(["app.exe", "--unknown"]);
 
         Assert.That(options.AutoLoadSample, Is.Null);
+        Assert.That(options.DebugPrimaryLanguageOverride, Is.Null);
+    }
+
+    [Test]
+    public void Parse_WithDebugEnglishOption_SetsEnglishOverride()
+    {
+        var options = AppLaunchOptions.Parse(["app.exe", "--debug-language-en-us"]);
+
+        Assert.That(options.DebugPrimaryLanguageOverride, Is.EqualTo("en-US"));
+    }
+
+    [Test]
+    public void Parse_WithDebugLanguageOffOption_ClearsLanguageOverride()
+    {
+        var options = AppLaunchOptions.Parse(["app.exe", "--debug-language-off"]);
+
+        Assert.That(options.DebugPrimaryLanguageOverride, Is.EqualTo("ja-JP"));
+    }
+
+    [Test]
+    public void Parse_WithConflictingDebugLanguageOptions_ThrowsArgumentException()
+    {
+        var exception = Assert.Throws<ArgumentException>(
+            () => AppLaunchOptions.Parse(["app.exe", "--debug-language-en-us", "--debug-language-off"]));
+
+        Assert.That(exception, Is.Not.Null);
+        Assert.That(exception!.ParamName, Is.EqualTo("args"));
     }
 }
