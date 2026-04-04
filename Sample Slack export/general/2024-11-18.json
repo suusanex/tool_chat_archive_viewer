@@ -1,0 +1,151 @@
+[
+    {
+        "subtype": "channel_join",
+        "user": "U01AKR001",
+        "text": "<@U01AKR001> has joined the channel",
+        "type": "message",
+        "ts": "1731888001.000100"
+    },
+    {
+        "subtype": "channel_join",
+        "user": "U01BLK002",
+        "text": "<@U01BLK002> has joined the channel",
+        "type": "message",
+        "ts": "1731888002.000200"
+    },
+    {
+        "subtype": "channel_join",
+        "user": "U01CSY003",
+        "text": "<@U01CSY003> has joined the channel",
+        "type": "message",
+        "ts": "1731888003.000300"
+    },
+    {
+        "subtype": "channel_join",
+        "user": "U01DRW004",
+        "text": "<@U01DRW004> has joined the channel",
+        "type": "message",
+        "ts": "1731888004.000400"
+    },
+    {
+        "subtype": "channel_join",
+        "user": "U01EMI005",
+        "text": "<@U01EMI005> has joined the channel",
+        "type": "message",
+        "ts": "1731888005.000500"
+    },
+    {
+        "user": "U01CSY003",
+        "type": "message",
+        "ts": "1731888300.123456",
+        "client_msg_id": "11111111-1111-4111-8111-111111111111",
+        "text": "公開チャンネルのサンプル作成を始めます。ここは全体連絡用です。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "b5890003",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01csy003_72.png",
+            "first_name": "Casey",
+            "real_name": "Casey Planner",
+            "display_name": "casey",
+            "team": "T0SAMPLE1",
+            "name": "casey-pm",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genA1",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "公開チャンネルのサンプル作成を始めます。ここは全体連絡用です。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01AKR001",
+        "type": "message",
+        "ts": "1731888405.234567",
+        "client_msg_id": "22222222-2222-4222-8222-222222222222",
+        "text": "了解です。2024年と2025年にまたがる会話を少しずつ置いていきます。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "1f75cb01",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01akr001_72.png",
+            "first_name": "Akira",
+            "real_name": "Akira Demo",
+            "display_name": "akira",
+            "team": "T0SAMPLE1",
+            "name": "akira-demo",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genA2",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "了解です。2024年と2025年にまたがる会話を少しずつ置いていきます。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01EMI005",
+        "type": "message",
+        "ts": "1731888520.345678",
+        "client_msg_id": "33333333-3333-4333-8333-333333333333",
+        "text": "個人情報や実在の案件名は使わず、デモ用の話題だけにします。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "dc322f05",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01emi005_72.png",
+            "first_name": "Emi",
+            "real_name": "Emi QA",
+            "display_name": "emi",
+            "team": "T0SAMPLE1",
+            "name": "emi-qa",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genA3",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "個人情報や実在の案件名は使わず、デモ用の話題だけにします。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,36 @@
+<Page
+    x:Class="ChatArchiveViewer.App.Views.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Padding="16"
+          RowSpacing="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="AboutAppNameText"
+                   FontSize="22"
+                   FontWeight="SemiBold" />
+        <TextBlock x:Name="AboutVersionText"
+                   Grid.Row="1" />
+        <TextBlock x:Name="AboutDisclaimerText"
+                   Grid.Row="2"
+                   TextWrapping="WrapWholeWords" />
+        <TextBlock x:Name="AboutPrivacySummaryText"
+                   Grid.Row="3"
+                   TextWrapping="WrapWholeWords" />
+        <TextBlock x:Name="AboutFormatsText"
+                   Grid.Row="4" />
+        <TextBlock x:Name="AboutLicensePlaceholderText"
+                   Grid.Row="5"
+                   Opacity="0.8" />
+        <Button x:Name="OpenPrivacyPolicyButton"
+                Grid.Row="6"
+                Click="OnOpenPrivacyPolicyClick" />
+    </Grid>
+</Page>

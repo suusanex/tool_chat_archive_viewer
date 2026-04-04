@@ -1,0 +1,186 @@
+[
+    {
+        "user": "U01CSY003",
+        "type": "message",
+        "ts": "1748910600.100000",
+        "client_msg_id": "44444444-4444-4444-8444-444444444444",
+        "text": "6月デモの見せ場を整理します。スレッドで案を集めてください。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "b5890003",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01csy003_72.png",
+            "first_name": "Casey",
+            "real_name": "Casey Planner",
+            "display_name": "casey",
+            "team": "T0SAMPLE1",
+            "name": "casey-pm",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1748910600.100000",
+        "reply_count": 1,
+        "reply_users_count": 1,
+        "latest_reply": "1748910720.200000",
+        "reply_users": [
+            "U01DRW004"
+        ],
+        "replies": [
+            {
+                "user": "U01DRW004",
+                "ts": "1748910720.200000"
+            }
+        ],
+        "is_locked": false,
+        "subscribed": true,
+        "last_read": "1748910720.200000",
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genB1",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "6月デモの見せ場を整理します。スレッドで案を集めてください。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01DRW004",
+        "type": "message",
+        "ts": "1748910720.200000",
+        "client_msg_id": "55555555-5555-4555-8555-555555555555",
+        "text": "了解です。検索、集計、チャンネル別表示の3点が見せ場になりそうです。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "6c71c404",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01drw004_72.png",
+            "first_name": "Drew",
+            "real_name": "Drew Builder",
+            "display_name": "drew",
+            "team": "T0SAMPLE1",
+            "name": "drew-dev",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "thread_ts": "1748910600.100000",
+        "parent_user_id": "U01CSY003",
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genB2",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "了解です。検索、集計、チャンネル別表示の3点が見せ場になりそうです。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01AKR001",
+        "type": "message",
+        "ts": "1748910840.300000",
+        "edited": {
+            "user": "U01AKR001",
+            "ts": "1748910905.000000"
+        },
+        "client_msg_id": "66666666-6666-4666-8666-666666666666",
+        "text": "表示速度よりも、日別の切り替えが自然に見えることを優先します。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "1f75cb01",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01akr001_72.png",
+            "first_name": "Akira",
+            "real_name": "Akira Demo",
+            "display_name": "akira",
+            "team": "T0SAMPLE1",
+            "name": "akira-demo",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genB3",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "表示速度よりも、日別の切り替えが自然に見えることを優先します。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01EMI005",
+        "type": "message",
+        "ts": "1748910960.400000",
+        "client_msg_id": "77777777-7777-4777-8777-777777777777",
+        "text": "了解です。2024年、2025年、2026年のデータが見えると説明しやすいです。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "dc322f05",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01emi005_72.png",
+            "first_name": "Emi",
+            "real_name": "Emi QA",
+            "display_name": "emi",
+            "team": "T0SAMPLE1",
+            "name": "emi-qa",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "genB4",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "了解です。2024年、2025年、2026年のデータが見えると説明しやすいです。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "reactions": [
+            {
+                "name": "eyes",
+                "users": [
+                    "U01CSY003",
+                    "U01DRW004"
+                ],
+                "count": 2
+            }
+        ]
+    }
+]

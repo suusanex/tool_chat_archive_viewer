@@ -1,0 +1,98 @@
+[
+    {
+        "id": "C01GEN001",
+        "name": "general",
+        "created": 1731887600,
+        "creator": "U01CSY003",
+        "is_archived": false,
+        "is_general": true,
+        "members": [
+            "U01AKR001",
+            "U01BLK002",
+            "U01CSY003",
+            "U01DRW004",
+            "U01EMI005"
+        ],
+        "topic": {
+            "value": "Workspace-wide announcements and demo coordination",
+            "creator": "",
+            "last_set": 0
+        },
+        "purpose": {
+            "value": "This public channel contains lightweight sample announcements for export demos.",
+            "creator": "",
+            "last_set": 0
+        }
+    },
+    {
+        "id": "C01PRJ002",
+        "name": "project-orbit",
+        "created": 1731977700,
+        "creator": "U01CSY003",
+        "is_archived": false,
+        "is_general": false,
+        "members": [
+            "U01AKR001",
+            "U01BLK002",
+            "U01CSY003",
+            "U01DRW004"
+        ],
+        "topic": {
+            "value": "Shared notes for the fictitious Orbit demo project",
+            "creator": "U01CSY003",
+            "last_set": 1731977800
+        },
+        "purpose": {
+            "value": "A project channel with safe fictional conversation for app demonstrations.",
+            "creator": "U01CSY003",
+            "last_set": 1731977800
+        }
+    },
+    {
+        "id": "C01SUP003",
+        "name": "support-desk",
+        "created": 1749001800,
+        "creator": "U01EMI005",
+        "is_archived": false,
+        "is_general": false,
+        "members": [
+            "U01BLK002",
+            "U01CSY003",
+            "U01DRW004",
+            "U01EMI005"
+        ],
+        "topic": {
+            "value": "Sample bug triage and validation notes",
+            "creator": "U01EMI005",
+            "last_set": 1749002100
+        },
+        "purpose": {
+            "value": "This channel demonstrates support-style conversations without real incidents.",
+            "creator": "U01EMI005",
+            "last_set": 1749002100
+        }
+    },
+    {
+        "id": "C01RND004",
+        "name": "random-lounge",
+        "created": 1731888200,
+        "creator": "U01AKR001",
+        "is_archived": false,
+        "is_general": false,
+        "members": [
+            "U01AKR001",
+            "U01BLK002",
+            "U01EMI005"
+        ],
+        "topic": {
+            "value": "Lightweight non-work chat for the demo workspace",
+            "creator": "",
+            "last_set": 0
+        },
+        "purpose": {
+            "value": "A harmless social channel so the sample export includes more than work-only conversation.",
+            "creator": "",
+            "last_set": 0
+        }
+    }
+]

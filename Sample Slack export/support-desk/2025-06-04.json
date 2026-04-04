@@ -1,0 +1,125 @@
+[
+    {
+        "user": "U01EMI005",
+        "type": "message",
+        "ts": "1749002400.100000",
+        "client_msg_id": "13131313-1313-4313-8313-131313131313",
+        "text": "軽微な不具合として、リアクション付きメッセージの件数表示を確認したいです。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "dc322f05",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01emi005_72.png",
+            "first_name": "Emi",
+            "real_name": "Emi QA",
+            "display_name": "emi",
+            "team": "T0SAMPLE1",
+            "name": "emi-qa",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "supA1",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "軽微な不具合として、リアクション付きメッセージの件数表示を確認したいです。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "reactions": [
+            {
+                "name": "white_check_mark",
+                "users": [
+                    "U01DRW004"
+                ],
+                "count": 1
+            }
+        ]
+    },
+    {
+        "user": "U01DRW004",
+        "type": "message",
+        "ts": "1749002520.200000",
+        "client_msg_id": "14141414-1414-4414-8414-141414141414",
+        "text": "再現用に1件だけリアクションを付けたサンプルを入れておきます。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "6c71c404",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01drw004_72.png",
+            "first_name": "Drew",
+            "real_name": "Drew Builder",
+            "display_name": "drew",
+            "team": "T0SAMPLE1",
+            "name": "drew-dev",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "supA2",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "再現用に1件だけリアクションを付けたサンプルを入れておきます。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "user": "U01BLK002",
+        "type": "message",
+        "ts": "1749002640.300000",
+        "client_msg_id": "15151515-1515-4515-8515-151515151515",
+        "text": "了解。大量データにはせず、デモに必要な分だけに絞ります。",
+        "team": "T0SAMPLE1",
+        "user_team": "T0SAMPLE1",
+        "source_team": "T0SAMPLE1",
+        "user_profile": {
+            "avatar_hash": "2aa19802",
+            "image_72": "https://avatars.slack-edge.com/2024-11-18/u01blk002_72.png",
+            "first_name": "Blake",
+            "real_name": "Blake Ops",
+            "display_name": "",
+            "team": "T0SAMPLE1",
+            "name": "blake-ops",
+            "is_restricted": false,
+            "is_ultra_restricted": false
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "supA3",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "了解。大量データにはせず、デモに必要な分だけに絞ります。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
