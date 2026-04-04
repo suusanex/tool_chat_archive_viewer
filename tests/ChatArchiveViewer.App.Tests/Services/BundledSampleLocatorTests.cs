@@ -8,10 +8,11 @@ public sealed class BundledSampleLocatorTests
     [Test]
     public void Ctor_BuildsExpectedPathsFromBaseDirectory()
     {
-        var locator = new BundledSampleLocator(@"D:\app");
+        var baseDirectory = Path.Combine(Path.GetTempPath(), $"sample-locator-{Guid.NewGuid():N}");
+        var locator = new BundledSampleLocator(baseDirectory);
 
-        Assert.That(locator.SampleFolderPath, Is.EqualTo(Path.GetFullPath(@"D:\app\Samples\Sample Slack export")));
-        Assert.That(locator.SampleZipPath, Is.EqualTo(Path.GetFullPath(@"D:\app\Samples\Sample Slack export.zip")));
+        Assert.That(locator.SampleFolderPath, Is.EqualTo(Path.GetFullPath(Path.Combine(baseDirectory, "Samples", "Sample Slack export"))));
+        Assert.That(locator.SampleZipPath, Is.EqualTo(Path.GetFullPath(Path.Combine(baseDirectory, "Samples", "Sample Slack export.zip"))));
     }
 
     [Test]

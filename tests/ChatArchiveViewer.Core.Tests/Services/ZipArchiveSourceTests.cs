@@ -216,11 +216,19 @@ public sealed class ZipArchiveSourceTests
     {
         var zipPath = TrackTempFile(Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.zip"));
         File.WriteAllBytes(zipPath, [0x00, 0x01, 0x02, 0x03, 0x04]);
+        var directoriesBefore = GetExtractDirectories();
 
         var action = () => new ZipArchiveSource(zipPath);
 
         Assert.That(action, Throws.TypeOf<InvalidDataException>());
+        Assert.That(GetExtractDirectories(), Is.EquivalentTo(directoriesBefore));
     }
+
+    private static string[] GetExtractDirectories()
+        => Directory
+            .GetDirectories(Path.GetTempPath(), "chat-archive-viewer-*", SearchOption.TopDirectoryOnly)
+            .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
 
     private string CreateZip(params (string path, string content)[] entries)
     {

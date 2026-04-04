@@ -49,7 +49,15 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
                 return;
             }
 
-            source = await LoadArchiveAsync(source, ct);
+            var loadResult = await LoadArchiveAsync(source, ct);
+            await archiveSessionService.SetCurrentAsync(source, loadResult.Provider, loadResult.Archive);
+            source = null;
+
+            overviewViewModel.SetArchive(loadResult.Archive);
+            await browseViewModel.RefreshFromSessionAsync();
+            searchViewModel.SearchCommand.NotifyCanExecuteChanged();
+
+            logger.LogInformation("Archive loaded. Format={FormatId} Conversations={ConversationCount}", loadResult.FormatId, loadResult.Archive.Conversations.Count);
         }
         finally
         {
@@ -66,7 +74,20 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
         try
         {
             source = await archiveOpenService.OpenBundledSampleAsync(kind, ct);
-            source = await LoadArchiveAsync(source, ct);
+            if (source is null)
+            {
+                return;
+            }
+
+            var loadResult = await LoadArchiveAsync(source, ct);
+            await archiveSessionService.SetCurrentAsync(source, loadResult.Provider, loadResult.Archive);
+            source = null;
+
+            overviewViewModel.SetArchive(loadResult.Archive);
+            await browseViewModel.RefreshFromSessionAsync();
+            searchViewModel.SearchCommand.NotifyCanExecuteChanged();
+
+            logger.LogInformation("Archive loaded. Format={FormatId} Conversations={ConversationCount}", loadResult.FormatId, loadResult.Archive.Conversations.Count);
         }
         finally
         {
@@ -77,7 +98,7 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
         }
     }
 
-    private async Task<IArchiveSource?> LoadArchiveAsync(IArchiveSource source, CancellationToken ct)
+    private async Task<(IArchiveFormatProvider Provider, ChatArchive Archive, string FormatId)> LoadArchiveAsync(IArchiveSource source, CancellationToken ct)
     {
         var detections = await formatRegistry.DetectAllAsync(source, ct);
         var best = detections
@@ -93,13 +114,6 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
         var provider = formatRegistry.GetProvider(best.FormatId)
             ?? throw new InvalidOperationException($"Provider not found: {best.FormatId}");
         var archive = await archiveLoadService.LoadAsync(source, provider, progress: null, ct);
-        await archiveSessionService.SetCurrentAsync(source, provider, archive);
-
-        overviewViewModel.SetArchive(archive);
-        await browseViewModel.RefreshFromSessionAsync();
-        searchViewModel.SearchCommand.NotifyCanExecuteChanged();
-
-        logger.LogInformation("Archive loaded. Format={FormatId} Conversations={ConversationCount}", best.FormatId, archive.Conversations.Count);
-        return null;
+        return (provider, archive, best.FormatId);
     }
 }

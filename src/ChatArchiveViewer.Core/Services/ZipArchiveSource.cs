@@ -25,7 +25,15 @@ public sealed class ZipArchiveSource : IArchiveSource
         Directory.CreateDirectory(extractRoot);
         DisplayPath = this.zipPath;
 
-        ExtractSafely();
+        try
+        {
+            ExtractSafely();
+        }
+        catch
+        {
+            DeleteExtractRoot();
+            throw;
+        }
     }
 
     public string DisplayPath { get; }
@@ -47,12 +55,17 @@ public sealed class ZipArchiveSource : IArchiveSource
 
     public ValueTask DisposeAsync()
     {
+        DeleteExtractRoot();
+
+        return ValueTask.CompletedTask;
+    }
+
+    private void DeleteExtractRoot()
+    {
         if (Directory.Exists(extractRoot))
         {
             Directory.Delete(extractRoot, recursive: true);
         }
-
-        return ValueTask.CompletedTask;
     }
 
     private void ExtractSafely()
