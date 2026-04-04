@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ChatArchiveViewer.App.Services;
+using ChatArchiveViewer.CloudFetch.Models;
 
 namespace ChatArchiveViewer.App.ViewModels;
 
@@ -21,6 +22,13 @@ public sealed partial class MainPageViewModel : ViewModelBase
     [ObservableProperty]
     private bool hasArchive;
 
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsStaleWarningVisible))]
+    private CloudFetchStatus cloudFetchStatus = CloudFetchStatus.None;
+
+    [ObservableProperty]
+    private string? cloudFetchErrorMessage;
+
     public MainPageViewModel(IArchiveSessionService archiveSessionService)
     {
         this.archiveSessionService = archiveSessionService ?? throw new ArgumentNullException(nameof(archiveSessionService));
@@ -40,5 +48,13 @@ public sealed partial class MainPageViewModel : ViewModelBase
     public void RefreshArchiveState()
     {
         HasArchive = archiveSessionService.HasArchive;
+    }
+
+    public bool IsStaleWarningVisible => CloudFetchStatus == CloudFetchStatus.StaleCache;
+
+    public void SetCloudFetchResult(CloudFetchStatus status, string? errorMessage)
+    {
+        CloudFetchStatus = status;
+        CloudFetchErrorMessage = errorMessage;
     }
 }

@@ -55,6 +55,7 @@
 		<Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
 		<Content Include="Assets\StoreLogo.png" />
 		<Content Include="Assets\Wide310x150Logo.scale-200.png" />
+		<Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
 		<Content Include="..\..\Sample Slack export.zip" Link="Samples\Sample Slack export.zip" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
 		<Content Include="..\..\Sample Slack export\**\*" Link="Samples\Sample Slack export\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
 	</ItemGroup>
@@ -86,6 +87,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\ChatArchiveViewer.Core\ChatArchiveViewer.Core.csproj" />
+		<ProjectReference Include="..\ChatArchiveViewer.CloudFetch\ChatArchiveViewer.CloudFetch.csproj" />
 		<ProjectReference Include="..\ChatArchiveViewer.Formats.Slack\ChatArchiveViewer.Formats.Slack.csproj" />
 	</ItemGroup>
 	<ItemGroup>
