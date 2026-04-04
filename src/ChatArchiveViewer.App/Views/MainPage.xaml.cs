@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ChatArchiveViewer.CloudFetch.Models;
+using System.ComponentModel;
 
 namespace ChatArchiveViewer.App.Views;
 
@@ -9,6 +11,7 @@ public sealed partial class MainPage : Page
     private readonly IArchiveSessionService archiveSessionService;
     private readonly IArchiveWorkflowService archiveWorkflowService;
     private readonly AppLaunchOptions launchOptions;
+    private readonly CloudFetchFeatureOptions cloudFetchFeatureOptions;
     private readonly ILogger<MainPage> logger;
     private bool launchOptionsHandled;
 
@@ -20,8 +23,10 @@ public sealed partial class MainPage : Page
         archiveSessionService = services.GetRequiredService<IArchiveSessionService>();
         archiveWorkflowService = services.GetRequiredService<IArchiveWorkflowService>();
         launchOptions = services.GetRequiredService<AppLaunchOptions>();
+        cloudFetchFeatureOptions = services.GetRequiredService<CloudFetchFeatureOptions>();
         logger = services.GetRequiredService<ILogger<MainPage>>();
         archiveSessionService.ArchiveChanged += OnArchiveChanged;
+        viewModel.PropertyChanged += OnMainPageViewModelPropertyChanged;
         Loaded += OnMainPageLoaded;
         Unloaded += OnMainPageUnloaded;
 
@@ -29,6 +34,7 @@ public sealed partial class MainPage : Page
         RootNavigation.SelectedItem = BrowseNavItem;
         NavigateToSelectedSection();
         UpdateSearchMenuVisibility();
+        UpdateCloudFetchInfoBar();
     }
 
     public void ToggleNavigationPane()
@@ -89,7 +95,7 @@ public sealed partial class MainPage : Page
     {
         _ = sender;
         _ = e;
-        if (launchOptionsHandled || launchOptions.AutoLoadSample is null)
+        if (launchOptionsHandled)
         {
             return;
         }
@@ -98,7 +104,11 @@ public sealed partial class MainPage : Page
         try
         {
             using var cts = new CancellationTokenSource();
-            await archiveWorkflowService.OpenBundledSampleAsync(launchOptions.AutoLoadSample.Value, cts.Token);
+            var autoLoadSample = launchOptions.AutoLoadSample;
+            if (autoLoadSample is not null)
+            {
+                await archiveWorkflowService.OpenBundledSampleAsync(autoLoadSample.Value, cts.Token);
+            }
         }
         catch (FileNotFoundException ex)
         {
@@ -117,8 +127,12 @@ public sealed partial class MainPage : Page
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Open bundled sample failed. Exception={Exception}", ex.ToString());
+            logger.LogError(ex, "Startup archive load failed. Exception={Exception}", ex.ToString());
             await ShowErrorAsync(LocalizedStrings.Get("Error.OpenArchive.Failed"));
+        }
+        finally
+        {
+            UpdateCloudFetchInfoBar();
         }
     }
 
@@ -129,10 +143,16 @@ public sealed partial class MainPage : Page
         if (DispatcherQueue.HasThreadAccess)
         {
             UpdateSearchMenuVisibility();
+            UpdateCloudFetchInfoBar();
             return;
         }
 
-        _ = DispatcherQueue.TryEnqueue(UpdateSearchMenuVisibility);
+        _ = DispatcherQueue.TryEnqueue(
+            () =>
+            {
+                UpdateSearchMenuVisibility();
+                UpdateCloudFetchInfoBar();
+            });
     }
 
     private void OnMainPageUnloaded(object sender, RoutedEventArgs e)
@@ -140,8 +160,27 @@ public sealed partial class MainPage : Page
         _ = sender;
         _ = e;
         archiveSessionService.ArchiveChanged -= OnArchiveChanged;
+        viewModel.PropertyChanged -= OnMainPageViewModelPropertyChanged;
         Loaded -= OnMainPageLoaded;
         Unloaded -= OnMainPageUnloaded;
+    }
+
+    private void OnMainPageViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        _ = sender;
+        if (e.PropertyName is not nameof(MainPageViewModel.CloudFetchStatus)
+            && e.PropertyName is not nameof(MainPageViewModel.CloudFetchErrorMessage))
+        {
+            return;
+        }
+
+        if (DispatcherQueue.HasThreadAccess)
+        {
+            UpdateCloudFetchInfoBar();
+            return;
+        }
+
+        _ = DispatcherQueue.TryEnqueue(UpdateCloudFetchInfoBar);
     }
 
     private async Task ShowErrorAsync(string message)
@@ -154,5 +193,37 @@ public sealed partial class MainPage : Page
             XamlRoot = XamlRoot
         };
         await dialog.ShowAsync();
+    }
+
+    private void UpdateCloudFetchInfoBar()
+    {
+        if (!cloudFetchFeatureOptions.IsEnabled)
+        {
+            CloudFetchInfoBar.Visibility = Visibility.Collapsed;
+            CloudFetchInfoBar.IsOpen = false;
+            CloudFetchInfoBar.Message = string.Empty;
+            return;
+        }
+
+        CloudFetchInfoBar.Visibility = Visibility.Visible;
+        switch (viewModel.CloudFetchStatus)
+        {
+            case CloudFetchStatus.StaleCache:
+                CloudFetchInfoBar.IsOpen = true;
+                CloudFetchInfoBar.Severity = InfoBarSeverity.Warning;
+                CloudFetchInfoBar.Title = LocalizedStrings.Get("CloudFetch.InfoBar.Stale.Title");
+                CloudFetchInfoBar.Message = viewModel.CloudFetchErrorMessage ?? LocalizedStrings.Get("CloudFetch.InfoBar.Stale.Message");
+                break;
+            case CloudFetchStatus.NoCacheError:
+                CloudFetchInfoBar.IsOpen = true;
+                CloudFetchInfoBar.Severity = InfoBarSeverity.Error;
+                CloudFetchInfoBar.Title = LocalizedStrings.Get("CloudFetch.InfoBar.Error.Title");
+                CloudFetchInfoBar.Message = viewModel.CloudFetchErrorMessage ?? LocalizedStrings.Get("CloudFetch.InfoBar.Error.Message");
+                break;
+            default:
+                CloudFetchInfoBar.IsOpen = false;
+                CloudFetchInfoBar.Message = string.Empty;
+                break;
+        }
     }
 }

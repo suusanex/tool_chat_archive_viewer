@@ -1,7 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml;
+using ChatArchiveViewer.CloudFetch;
+using ChatArchiveViewer.CloudFetch.Abstractions;
+using ChatArchiveViewer.CloudFetch.Services;
 using Serilog;
 using Serilog.Events;
 
@@ -16,10 +20,23 @@ public partial class App : Application
         InitializeComponent();
 
         Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
-            .ConfigureServices(
-                (_, services) =>
+            .ConfigureAppConfiguration(
+                (_, configurationBuilder) =>
                 {
+                    foreach (var appSettingsPath in AppSettingsPathResolver.GetConfigurationFilePaths())
+                    {
+                        configurationBuilder.AddJsonFile(appSettingsPath, optional: true, reloadOnChange: false);
+                    }
+                })
+            .ConfigureServices(
+                (hostContext, services) =>
+                {
+                    var bootstrapConfigUrl = CloudFetchConstants.GetBootstrapConfigUrl(
+                        hostContext.Configuration[CloudFetchConstants.BootstrapConfigUrlConfigurationKey]);
+                    var cloudFetchFeatureOptions = new CloudFetchFeatureOptions(bootstrapConfigUrl);
+
                     services.AddSingleton(AppLaunchOptions.Parse(Environment.GetCommandLineArgs()));
+                    services.AddSingleton(cloudFetchFeatureOptions);
                     services.AddSingleton<IWindowProvider, WindowProvider>();
                     services.AddSingleton<IBundledSampleLocator>(_ => new BundledSampleLocator(AppContext.BaseDirectory));
                     services.AddSingleton<IAppSettingsService, AppSettingsService>();
@@ -30,6 +47,30 @@ public partial class App : Application
                     services.AddSingleton<IConversationDateCountService, ConversationDateCountService>();
                     services.AddSingleton<IArchiveOpenService, ArchiveOpenService>();
                     services.AddSingleton<IArchiveWorkflowService, ArchiveWorkflowService>();
+
+                    if (cloudFetchFeatureOptions.IsEnabled)
+                    {
+                        services.AddSingleton<HttpClient>();
+                        services.AddSingleton<IBootstrapConfigProvider>(sp =>
+                            new BootstrapConfigProvider(
+                                sp.GetRequiredService<HttpClient>(),
+                                sp.GetRequiredService<Microsoft.Extensions.Logging.ILogger<BootstrapConfigProvider>>(),
+                                cloudFetchFeatureOptions.BootstrapConfigUrl!));
+                        services.AddSingleton<ICloudAuthService, MsalAuthService>();
+                        services.AddSingleton<ICloudManifestProvider, CloudManifestProvider>();
+                        services.AddSingleton<ICloudArchiveDownloader, CloudArchiveDownloader>();
+                        services.AddSingleton<ICacheManager>(sp =>
+                            new LocalCacheManager(
+                                sp.GetRequiredService<Microsoft.Extensions.Logging.ILogger<LocalCacheManager>>(),
+                                cacheDirectory: null,
+                                bootstrapConfigUrl: cloudFetchFeatureOptions.BootstrapConfigUrl));
+                        services.AddSingleton<IHashVerifier, Sha256Verifier>();
+                        services.AddSingleton<ICloudFetchOrchestrator, CloudFetchOrchestrator>();
+                    }
+                    else
+                    {
+                        services.AddSingleton<ICloudFetchOrchestrator, DisabledCloudFetchOrchestrator>();
+                    }
 
                     services.AddSingleton<IArchiveFormatRegistry, ArchiveFormatRegistry>();
                     services.AddSingleton<IArchiveLoadService, ArchiveLoadService>();

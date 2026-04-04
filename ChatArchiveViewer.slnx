@@ -4,6 +4,7 @@
       <Platform Project="x64" />
       <Deploy />
     </Project>
+    <Project Path="src/ChatArchiveViewer.CloudFetch/ChatArchiveViewer.CloudFetch.csproj" />
     <Project Path="src/ChatArchiveViewer.Core/ChatArchiveViewer.Core.csproj" />
     <Project Path="src/ChatArchiveViewer.Formats.Slack/ChatArchiveViewer.Formats.Slack.csproj" />
   </Folder>
@@ -11,6 +12,7 @@
     <Project Path="tests/ChatArchiveViewer.App.Tests/ChatArchiveViewer.App.Tests.csproj">
       <Platform Project="x64" />
     </Project>
+    <Project Path="tests/ChatArchiveViewer.CloudFetch.Tests/ChatArchiveViewer.CloudFetch.Tests.csproj" />
     <Project Path="tests/ChatArchiveViewer.Core.Tests/ChatArchiveViewer.Core.Tests.csproj" />
     <Project Path="tests/ChatArchiveViewer.Formats.Slack.Tests/ChatArchiveViewer.Formats.Slack.Tests.csproj" />
   </Folder>

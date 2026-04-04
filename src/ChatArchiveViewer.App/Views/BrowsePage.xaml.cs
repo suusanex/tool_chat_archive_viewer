@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Xaml.Navigation;
+using ChatArchiveViewer.CloudFetch.Models;
 
 namespace ChatArchiveViewer.App.Views;
 
@@ -17,6 +18,7 @@ public sealed partial class BrowsePage : Page
     private readonly ArchiveBrowseViewModel browseViewModel;
     private readonly IArchiveSessionService archiveSessionService;
     private readonly IArchiveWorkflowService archiveWorkflowService;
+    private readonly CloudFetchFeatureOptions cloudFetchFeatureOptions;
     private readonly ILogger<BrowsePage> logger;
     private NarrowBrowseStep narrowStep = NarrowBrowseStep.Channels;
     private bool isSessionEventHooked;
@@ -29,6 +31,7 @@ public sealed partial class BrowsePage : Page
         browseViewModel = services.GetRequiredService<ArchiveBrowseViewModel>();
         archiveSessionService = services.GetRequiredService<IArchiveSessionService>();
         archiveWorkflowService = services.GetRequiredService<IArchiveWorkflowService>();
+        cloudFetchFeatureOptions = services.GetRequiredService<CloudFetchFeatureOptions>();
         logger = services.GetRequiredService<ILogger<BrowsePage>>();
 
         ApplyLocalization();
@@ -66,6 +69,13 @@ public sealed partial class BrowsePage : Page
     {
         _ = sender;
         await OpenArchiveAsync(isZip: true);
+    }
+
+    private async void OnOpenCloudClick(object sender, RoutedEventArgs e)
+    {
+        _ = sender;
+        _ = e;
+        await OpenCloudArchiveAsync();
     }
 
     private async Task OpenArchiveAsync(bool isZip)
@@ -114,6 +124,31 @@ public sealed partial class BrowsePage : Page
         catch (Exception ex)
         {
             logger.LogError(ex, "Open bundled sample failed. Exception={Exception}", ex.ToString());
+            await ShowErrorAsync(LocalizedStrings.Get("Error.OpenArchive.Failed"));
+        }
+    }
+
+    private async Task OpenCloudArchiveAsync()
+    {
+        try
+        {
+            using var cts = new CancellationTokenSource();
+            var result = await archiveWorkflowService.OpenCloudArchiveAsync(cts.Token);
+            if (result.Status == CloudFetchStatus.NoCacheError)
+            {
+                await ShowErrorAsync(result.ErrorMessage ?? LocalizedStrings.Get("Error.CloudFetch.NoCache"));
+            }
+
+            RefreshBrowseBindings();
+        }
+        catch (UnsupportedArchiveFormatException ex)
+        {
+            logger.LogError(ex, "Open cloud archive failed. Exception={Exception}", ex.ToString());
+            await ShowErrorAsync(LocalizedStrings.Get("Error.OpenArchive.NoSupportedFormat"));
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Open cloud archive failed. Exception={Exception}", ex.ToString());
             await ShowErrorAsync(LocalizedStrings.Get("Error.OpenArchive.Failed"));
         }
     }
@@ -255,6 +290,8 @@ public sealed partial class BrowsePage : Page
         OpenSampleButton.Content = LocalizedStrings.Get("Entry.OpenSample");
         OpenFolderButton.Content = LocalizedStrings.Get("Browse.OpenFolder");
         OpenZipButton.Content = LocalizedStrings.Get("Browse.OpenZip");
+        OpenCloudButton.Content = LocalizedStrings.Get("Browse.OpenCloud");
+        OpenCloudButton.Visibility = cloudFetchFeatureOptions.IsEnabled ? Visibility.Visible : Visibility.Collapsed;
         NarrowBackButton.Content = LocalizedStrings.Get("Browse.Back");
         ChannelsHeaderText.Text = LocalizedStrings.Get("Browse.Channels");
         DatesHeaderText.Text = LocalizedStrings.Get("Browse.Dates");

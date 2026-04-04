@@ -1,4 +1,7 @@
 using Microsoft.Extensions.Logging;
+using ChatArchiveViewer.CloudFetch.Abstractions;
+using ChatArchiveViewer.CloudFetch.Models;
+using ChatArchiveViewer.Core.Services;
 
 namespace ChatArchiveViewer.App.Services;
 
@@ -12,6 +15,8 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
     private readonly ArchiveOverviewViewModel overviewViewModel;
     private readonly ArchiveBrowseViewModel browseViewModel;
     private readonly SearchViewModel searchViewModel;
+    private readonly MainPageViewModel mainPageViewModel;
+    private readonly ICloudFetchOrchestrator cloudFetchOrchestrator;
     private readonly ILogger<ArchiveWorkflowService> logger;
 
     public ArchiveWorkflowService(
@@ -23,6 +28,8 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
         ArchiveOverviewViewModel overviewViewModel,
         ArchiveBrowseViewModel browseViewModel,
         SearchViewModel searchViewModel,
+        MainPageViewModel mainPageViewModel,
+        ICloudFetchOrchestrator cloudFetchOrchestrator,
         ILogger<ArchiveWorkflowService> logger)
     {
         this.archiveOpenService = archiveOpenService ?? throw new ArgumentNullException(nameof(archiveOpenService));
@@ -33,6 +40,8 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
         this.overviewViewModel = overviewViewModel ?? throw new ArgumentNullException(nameof(overviewViewModel));
         this.browseViewModel = browseViewModel ?? throw new ArgumentNullException(nameof(browseViewModel));
         this.searchViewModel = searchViewModel ?? throw new ArgumentNullException(nameof(searchViewModel));
+        this.mainPageViewModel = mainPageViewModel ?? throw new ArgumentNullException(nameof(mainPageViewModel));
+        this.cloudFetchOrchestrator = cloudFetchOrchestrator ?? throw new ArgumentNullException(nameof(cloudFetchOrchestrator));
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
@@ -56,6 +65,7 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
             overviewViewModel.SetArchive(loadResult.Archive);
             await browseViewModel.RefreshFromSessionAsync();
             searchViewModel.SearchCommand.NotifyCanExecuteChanged();
+            mainPageViewModel.SetCloudFetchResult(CloudFetchStatus.None, null);
 
             logger.LogInformation("Archive loaded. Format={FormatId} Conversations={ConversationCount}", loadResult.FormatId, loadResult.Archive.Conversations.Count);
         }
@@ -86,8 +96,47 @@ public sealed class ArchiveWorkflowService : IArchiveWorkflowService
             overviewViewModel.SetArchive(loadResult.Archive);
             await browseViewModel.RefreshFromSessionAsync();
             searchViewModel.SearchCommand.NotifyCanExecuteChanged();
+            mainPageViewModel.SetCloudFetchResult(CloudFetchStatus.None, null);
 
             logger.LogInformation("Archive loaded. Format={FormatId} Conversations={ConversationCount}", loadResult.FormatId, loadResult.Archive.Conversations.Count);
+        }
+        finally
+        {
+            if (source is not null)
+            {
+                await source.DisposeAsync();
+            }
+        }
+    }
+
+    public async Task<CloudFetchResult> OpenCloudArchiveAsync(CancellationToken ct)
+    {
+        var fetchResult = await cloudFetchOrchestrator.FetchLatestAsync(progress: null, ct);
+        mainPageViewModel.SetCloudFetchResult(fetchResult.Status, fetchResult.ErrorMessage);
+        if (fetchResult.Status == CloudFetchStatus.NoCacheError || string.IsNullOrWhiteSpace(fetchResult.CachedZipPath))
+        {
+            return fetchResult;
+        }
+
+        IArchiveSource? source = null;
+        try
+        {
+            source = new ZipArchiveSource(fetchResult.CachedZipPath);
+            var loadResult = await LoadArchiveAsync(source, ct);
+            await archiveSessionService.SetCurrentAsync(source, loadResult.Provider, loadResult.Archive);
+            source = null;
+
+            overviewViewModel.SetArchive(loadResult.Archive);
+            await browseViewModel.RefreshFromSessionAsync();
+            searchViewModel.SearchCommand.NotifyCanExecuteChanged();
+
+            logger.LogInformation(
+                "Cloud archive loaded. Status={CloudStatus} Version={Version} Format={FormatId} Conversations={ConversationCount}",
+                fetchResult.Status,
+                fetchResult.Version,
+                loadResult.FormatId,
+                loadResult.Archive.Conversations.Count);
+            return fetchResult;
         }
         finally
         {

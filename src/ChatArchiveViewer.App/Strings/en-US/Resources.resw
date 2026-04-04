@@ -21,11 +21,12 @@
   <data name="Nav.Settings" xml:space="preserve"><value>Settings</value></data>
   <data name="Nav.About" xml:space="preserve"><value>About</value></data>
   <data name="Entry.OpenGroup.Title" xml:space="preserve"><value>Start by opening a chat log</value></data>
-  <data name="Entry.OpenGroup.Description" xml:space="preserve"><value>Choose one of the three options below to start reading a local chat archive.</value></data>
+  <data name="Entry.OpenGroup.Description" xml:space="preserve"><value>Choose one of the options below to start reading a chat archive.</value></data>
   <data name="Entry.OpenGroup.Hint" xml:space="preserve"><value>The included sample data can be opened directly, or used as the initial selection in the folder and ZIP dialogs.</value></data>
   <data name="Entry.OpenSample" xml:space="preserve"><value>Open Sample</value></data>
   <data name="Browse.OpenFolder" xml:space="preserve"><value>Open Folder</value></data>
   <data name="Browse.OpenZip" xml:space="preserve"><value>Open ZIP</value></data>
+  <data name="Browse.OpenCloud" xml:space="preserve"><value>Sign in and Open</value></data>
   <data name="Browse.Channels" xml:space="preserve"><value>Channels</value></data>
   <data name="Browse.Dates" xml:space="preserve"><value>Dates</value></data>
   <data name="Browse.Messages" xml:space="preserve"><value>Messages</value></data>
@@ -68,4 +69,9 @@
   <data name="Error.Search.Failed" xml:space="preserve"><value>Search failed.</value></data>
   <data name="Error.PrivacyPolicy.OpenFailed" xml:space="preserve"><value>Unable to open privacy policy.</value></data>
   <data name="Error.Browse.CountsFailed" xml:space="preserve"><value>Unable to load message counts for the selected month.</value></data>
+  <data name="Error.CloudFetch.NoCache" xml:space="preserve"><value>Could not fetch the cloud archive and no cached archive is available.</value></data>
+  <data name="CloudFetch.InfoBar.Stale.Title" xml:space="preserve"><value>Showing previously fetched archive</value></data>
+  <data name="CloudFetch.InfoBar.Stale.Message" xml:space="preserve"><value>Latest cloud fetch failed. The app is showing the previously fetched archive.</value></data>
+  <data name="CloudFetch.InfoBar.Error.Title" xml:space="preserve"><value>Cloud archive is unavailable</value></data>
+  <data name="CloudFetch.InfoBar.Error.Message" xml:space="preserve"><value>Cloud archive fetch failed and no local cache exists.</value></data>
 </root>
