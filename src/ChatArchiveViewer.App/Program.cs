@@ -84,7 +84,7 @@ public static class Program
         }
         catch (Exception ex)
         {
-            logger.LogError("WindowsAppSDK initialization failed. Exception={Exception}", ex.ToString());
+            logger.LogError(ex, "WindowsAppSDK initialization failed.");
             Trace.WriteLine(ex.ToString());
             throw;
         }

@@ -164,7 +164,7 @@ internal static class StartupDiagnostics
         ArgumentNullException.ThrowIfNull(exception);
         ArgumentException.ThrowIfNullOrWhiteSpace(message);
 
-        logger.LogError("{Message} Exception={Exception}", message, exception.ToString());
+        logger.LogError(exception, "{Message}", message);
         Trace.WriteLine(exception.ToString());
     }
 
