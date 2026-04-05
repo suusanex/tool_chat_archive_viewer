@@ -6,8 +6,6 @@ using Microsoft.UI.Xaml;
 using ChatArchiveViewer.CloudFetch;
 using ChatArchiveViewer.CloudFetch.Abstractions;
 using ChatArchiveViewer.CloudFetch.Services;
-using Serilog;
-using Serilog.Events;
 
 namespace ChatArchiveViewer.App;
 
@@ -96,20 +94,7 @@ public partial class App : Application
             .ConfigureLogging(
                 logging =>
                 {
-                    logging.ClearProviders();
-                    var appDataRoot = Path.Combine(
-                        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                        "ChatArchiveViewer");
-                    Directory.CreateDirectory(appDataRoot);
-                    var logDirectory = Path.Combine(appDataRoot, "Logs");
-                    Directory.CreateDirectory(logDirectory);
-                    var logPath = Path.Combine(logDirectory, "app-.log");
-                    var logger = new LoggerConfiguration()
-                        .MinimumLevel.Information()
-                        .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                        .WriteTo.File(logPath, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 14)
-                        .CreateLogger();
-                    logging.AddSerilog(logger, dispose: true);
+                    AppLogging.ConfigureLogging(logging);
                 })
             .Build();
     }

@@ -56,6 +56,8 @@
 		<Content Include="Assets\StoreLogo.png" />
 		<Content Include="Assets\Wide310x150Logo.scale-200.png" />
 		<Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+		<Content Include="NLog.config" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+		<Content Include="Strings\**\Resources.resw" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
 		<Content Include="..\..\Sample Slack export.zip" Link="Samples\Sample Slack export.zip" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
 		<Content Include="..\..\Sample Slack export\**\*" Link="Samples\Sample Slack export\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
 	</ItemGroup>
@@ -71,8 +73,8 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.0" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.*" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.*" />
-		<PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
-		<PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+		<PackageReference Include="NLog" Version="6.0.5" />
+		<PackageReference Include="NLog.Extensions.Logging" Version="6.0.5" />
 
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
@@ -89,6 +91,11 @@
 		<ProjectReference Include="..\ChatArchiveViewer.Core\ChatArchiveViewer.Core.csproj" />
 		<ProjectReference Include="..\ChatArchiveViewer.CloudFetch\ChatArchiveViewer.CloudFetch.csproj" />
 		<ProjectReference Include="..\ChatArchiveViewer.Formats.Slack\ChatArchiveViewer.Formats.Slack.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>ChatArchiveViewer.App.Tests</_Parameter1>
+		</AssemblyAttribute>
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="Assets\icon.ico">

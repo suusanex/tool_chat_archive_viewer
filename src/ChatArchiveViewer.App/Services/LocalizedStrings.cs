@@ -45,6 +45,15 @@ public static class LocalizedStrings
     public static string Format(string key, CultureInfo culture, params object[] args)
         => string.Format(culture, Get(key, culture), args);
 
+    public static string? ResolveResourcePath(string cultureName)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(cultureName);
+        return FindReswPath(cultureName);
+    }
+
+    public static IReadOnlyList<string> GetResourceSearchRoots()
+        => EnumerateSearchRoots().ToArray();
+
     private static string? ResolveString(string key, CultureInfo culture)
     {
         if (TryResolveFromResw(culture, key, out var value))

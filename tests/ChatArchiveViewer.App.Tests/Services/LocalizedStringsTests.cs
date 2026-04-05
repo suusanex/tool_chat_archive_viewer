@@ -37,4 +37,21 @@ public sealed class LocalizedStringsTests
 
         Assert.That(value, Is.EqualTo("閲覧"));
     }
+
+    [Test]
+    public void ResolveResourcePath_WithJapaneseCulture_FindsReswFile()
+    {
+        var path = LocalizedStrings.ResolveResourcePath("ja-JP");
+
+        Assert.That(path, Is.Not.Null);
+        Assert.That(Path.GetFileName(path), Is.EqualTo("Resources.resw"));
+    }
+
+    [Test]
+    public void GetResourceSearchRoots_ReturnsAtLeastOneSearchRoot()
+    {
+        var roots = LocalizedStrings.GetResourceSearchRoots();
+
+        Assert.That(roots, Is.Not.Empty);
+    }
 }
