@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.Json;
 using Azure.Core;
 using ChatArchiveViewer.CloudArchiveUpdater.Models;
@@ -104,7 +105,7 @@ public sealed class ArchiveUpdater
             catch (Exception ex)
             {
                 // クリーンアップ失敗は本処理を上書きしないが、診断のため必ず記録する。
-                System.Diagnostics.Trace.TraceWarning($"Failed to delete temporary directory '{tempDirectory}'. {ex.ToString()}");
+                Trace.TraceWarning($"Failed to delete temporary directory '{tempDirectory}'. {ex}");
             }
         }
     }
