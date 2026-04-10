@@ -47,6 +47,7 @@ bld/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
+.appdata/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -417,3 +418,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Visual Studio Cache
+*.lscache
