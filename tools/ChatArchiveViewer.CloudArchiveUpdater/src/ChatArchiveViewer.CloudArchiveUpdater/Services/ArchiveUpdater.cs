@@ -101,9 +101,10 @@ public sealed class ArchiveUpdater
                     Directory.Delete(tempDirectory, recursive: true);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // Best effort cleanup only.
+                // クリーンアップ失敗は本処理を上書きしないが、診断のため必ず記録する。
+                System.Diagnostics.Trace.TraceWarning($"Failed to delete temporary directory '{tempDirectory}'. {ex.ToString()}");
             }
         }
     }
