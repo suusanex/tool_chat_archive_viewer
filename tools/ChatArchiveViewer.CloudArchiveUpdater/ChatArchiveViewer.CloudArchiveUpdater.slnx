@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ChatArchiveViewer.CloudArchiveUpdater/ChatArchiveViewer.CloudArchiveUpdater.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ChatArchiveViewer.CloudArchiveUpdater.Tests/ChatArchiveViewer.CloudArchiveUpdater.Tests.csproj" />
+  </Folder>
+</Solution>
