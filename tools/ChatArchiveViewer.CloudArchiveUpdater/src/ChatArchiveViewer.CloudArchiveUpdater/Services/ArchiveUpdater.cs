@@ -105,7 +105,7 @@ public sealed class ArchiveUpdater
             catch (Exception ex)
             {
                 // クリーンアップ失敗は本処理を上書きしないが、診断のため必ず記録する。
-                Trace.TraceWarning($"Failed to delete temporary directory '{tempDirectory}'. {ex}");
+                Trace.TraceWarning($"Failed to delete temporary directory '{tempDirectory}'. {ex.ToString()}");
             }
         }
     }
